@@ -1,4 +1,8 @@
 Tamayura::Application.routes.draw do
+  get "blogs/index"
+
+  get "blogs/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
