@@ -1,4 +1,8 @@
 Tamayura::Application.routes.draw do
+  get "entries/index"
+
+  get "entries/show"
+
   get "blogs/index"
 
   get "blogs/show"
