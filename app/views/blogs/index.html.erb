@@ -3,6 +3,7 @@
 <% elsif !current_blog %>
   <%= form_tag :blogs, :method => :post do %>
     <%= text_field_tag :username, "" %>
+    <%= submit_tag :OK %>
   <% end %>
 <% else %>
   <%= link_to "YourBlog", current_blog %>
