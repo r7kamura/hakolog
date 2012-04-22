@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422024423) do
+ActiveRecord::Schema.define(:version => 20120422120938) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
     t.string   "username"
     t.datetime "edited_at"
     t.datetime "syunced_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "dropbox_id"
+    t.string   "dropbox_session"
   end
 
   create_table "entries", :force => true do |t|
