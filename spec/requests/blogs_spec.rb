@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "Blogs" do
   shared_examples_for "an existing page" do
-    it "should return status code of 200" do
-      page.status_code.should be(200)
-    end
+    its(:status_code) { should == 200 }
   end
+
+  subject { page }
 
   describe "GET /blogs" do
     before do
