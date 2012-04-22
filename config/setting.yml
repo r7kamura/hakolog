@@ -1,0 +1,12 @@
+defaults: &defaults
+  consumer_key:    <%= ENV["DROPBOX_CONSUMER_KEY"] %>
+  consumer_secret: <%= ENV["DROPBOX_CONSUMER_SECRET"] %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
