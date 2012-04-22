@@ -10,11 +10,17 @@ class ApplicationController < ActionController::Base
 
   def find_current_blog_by_session
     if session[:blog_id]
-      Blog.find_by_id(session[:blog_id])
-    elsif session[:dropbox]
+      if blog = Blog.find_by_id(session[:blog_id])
+        return blog
+      else
+        session.delete(:blog_id)
+      end
+    end
+
+    if session[:dropbox]
       begin
         uid = find_dropbox_uid_by_serialized_session(session[:dropbox])
-        Blog.find_by_dropbox_id(uid)
+        return Blog.find_by_dropbox_id(uid)
       rescue DropboxAuthError
         session.delete(:dropbox)
         nil
