@@ -5,6 +5,7 @@ gem "mysql2"
 gem "jquery-rails"
 
 gem "settingslogic"
+gem "dropbox-sdk", :require => "dropbox_sdk"
 
 group :assets do
   gem "sass-rails",   "~> 3.2.3"
