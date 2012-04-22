@@ -5,6 +5,17 @@ class BlogsController < ApplicationController
   def show
   end
 
+  def create
+    uid = find_dropbox_uid_by_serialized_session(session[:dropbox])
+    blog = Blog.new(
+      :username        => params[:username],
+      :dropbox_session => session[:dropbox],
+      :dropbox_id      => uid
+    )
+    session[:blog_id] = blog.id if blog.save
+    redirect_to :root
+  end
+
   def login
     ds = DropboxSession.new(Setting.consumer_key, Setting.consumer_secret)
     session[:dropbox] = ds.serialize
