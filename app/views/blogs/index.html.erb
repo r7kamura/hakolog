@@ -1,2 +1,9 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<% if !session[:dropbox] %>
+  <%= link_to "Login", :login_blogs %>
+<% elsif !current_blog %>
+  <%= form_tag :blogs, :method => :post do %>
+    <%= text_field_tag :username, "" %>
+  <% end %>
+<% else %>
+  <%= link_to "YourBlog", current_blog %>
+<% end %>
