@@ -4,4 +4,8 @@ class Blog < ActiveRecord::Base
   validates :username, :uniqueness => true, :presence => true
   validates :dropbox_session, :uniqueness => true, :presence => true
   validates :dropbox_id, :uniqueness => true, :presence => true
+
+  def title
+    super || username
+  end
 end
