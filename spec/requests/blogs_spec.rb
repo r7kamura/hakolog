@@ -11,6 +11,7 @@ describe "Blogs" do
     before do
       visit blogs_path
     end
+
     it_should_behave_like "an existing page"
   end
 
@@ -21,5 +22,9 @@ describe "Blogs" do
     end
 
     it_should_behave_like "an existing page"
+
+    it do
+      should have_content(@blog.title)
+    end
   end
 end
