@@ -1,0 +1,10 @@
+- if !session[:dropbox]
+  = link_to "Login", :login_blogs
+
+- elsif !current_blog
+  = form_tag :blogs, :method => :post do
+    = text_field_tag :username, ""
+    = submit_tag :OK
+
+- else
+  = link_to "Home", current_blog

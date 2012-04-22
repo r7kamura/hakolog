@@ -4,6 +4,7 @@ gem "rails", "3.2.3"
 gem "mysql2"
 gem "jquery-rails"
 
+gem "slim-rails"
 gem "settingslogic"
 gem "dropbox-sdk", :require => "dropbox_sdk"
 
