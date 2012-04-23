@@ -42,4 +42,35 @@ describe "Blogs" do
       it { should have_content(@entry.title) }
     end
   end
+
+  describe "GET /blogs/:id/entries/new" do
+    before { visit new_blog_entry_path }
+
+    it_should_behave_like "an existing page"
+
+    it do
+      within("#create_entry_form") do
+        should have_css("input#title")
+        should have_css("input#body")
+        should have_css("input[type=submit]")
+      end
+    end
+  end
+
+  describe "POST /blogs/:id/entries" do
+    before do
+      @title = "title 1"
+      @body  = "body 1"
+    end
+    it "should create entry" do
+      visit url_for(new_blog_entry_path)
+      fill_in :title, @title
+      fill_in :body, @body
+      click "OK"
+      visit blogs_path
+
+      should have_content(@title)
+      should have_content(@body)
+    end
+  end
 end
