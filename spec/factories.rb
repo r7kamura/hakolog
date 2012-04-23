@@ -1,7 +1,15 @@
 FactoryGirl.define do
   factory :blog do
-    username "blog username"
-    dropbox_id 1
-    dropbox_session "blog dropbox session"
+    %w[username dropbox_session].each do |attr|
+      sequence(attr) do |n|
+        "blog #{attr} #{n}"
+      end
+    end
+
+    sequence(:dropbox_id) { |n| n }
+  end
+
+  factory :entry do
+    sequence(:title) { |n| "entry title #{n}" }
   end
 end

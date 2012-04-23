@@ -35,5 +35,14 @@ describe "Blogs" do
         it_should_behave_like("it has title")
       end
     end
+
+    describe "entries" do
+      let(:blog) do
+        FactoryGirl.create(:blog).tap do |blog|
+          @entry = FactoryGirl.create(:entry, :blog => blog)
+        end
+      end
+      it { should have_content(@entry.title) }
+    end
   end
 end
