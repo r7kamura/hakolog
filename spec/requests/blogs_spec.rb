@@ -5,6 +5,8 @@ describe "Blogs" do
     its(:status_code) { should == 200 }
   end
 
+  let(:blog) { FactoryGirl.create(:blog) }
+
   subject { page }
 
   describe "GET /blogs" do
@@ -16,7 +18,6 @@ describe "Blogs" do
     before { visit url_for(blog) }
 
     describe "status code" do
-      let(:blog) { FactoryGirl.create(:blog) }
       it_should_behave_like "an existing page"
     end
 
@@ -31,7 +32,6 @@ describe "Blogs" do
       end
 
       context "when blog does not have its title" do
-        let(:blog) { FactoryGirl.create(:blog) }
         it_should_behave_like("it has title")
       end
     end
