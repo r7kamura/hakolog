@@ -25,4 +25,5 @@ group :test do
   gem "spork"
   gem "guard-spork"
   gem "guard-rspec"
+  gem "growl"
 end
