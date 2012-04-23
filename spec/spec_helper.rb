@@ -6,6 +6,8 @@ end
 
 Spork.each_run do
   require "factory_girl_rails"
+  FactoryGirl.factories.clear
+  FactoryGirl.reload
 end
 
 ENV["RAILS_ENV"] ||= 'test'
