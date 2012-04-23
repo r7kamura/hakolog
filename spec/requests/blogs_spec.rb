@@ -44,7 +44,10 @@ describe "Blogs" do
   end
 
   describe "GET /blogs/:id/entries/new" do
-    before { visit new_blog_entry_path }
+    before do
+      pending "not implemented"
+      visit new_blog_entry_path
+    end
 
     it_should_behave_like "an existing page"
 
@@ -59,6 +62,7 @@ describe "Blogs" do
 
   describe "POST /blogs/:id/entries" do
     before do
+      pending "not implemented"
       @title = "title 1"
       @body  = "body 1"
     end
