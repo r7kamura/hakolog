@@ -6,7 +6,7 @@ FactoryGirl.define do
       end
     end
 
-    sequence(:dropbox_id) { |n| n }
+    dropbox_id { |blog| blog.id }
   end
 
   factory :entry do
