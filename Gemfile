@@ -24,4 +24,5 @@ group :test do
   gem "factory_girl_rails", "~> 3.0"
   gem "spork"
   gem "guard-spork"
+  gem "guard-rspec"
 end
