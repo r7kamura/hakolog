@@ -37,10 +37,9 @@ describe "Blogs" do
     end
 
     describe "entries" do
-      let(:blog) do
-        FactoryGirl.create(:blog).tap do |blog|
-          @entry = FactoryGirl.create(:entry, :blog => blog)
-        end
+      before do
+        @entry = FactoryGirl.create(:entry, :blog_id => blog.id)
+        visit url_for(blog)
       end
       it { should have_content(@entry.title) }
     end
