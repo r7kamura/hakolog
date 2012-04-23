@@ -66,6 +66,9 @@ describe "Blogs" do
       @title = "title 1"
       @body  = "body 1"
     end
+
+    it_should_behave_like "an existing page"
+
     it "should create entry" do
       visit url_for(new_blog_entry_path)
       fill_in :title, @title
