@@ -17,9 +17,7 @@ describe "Blogs" do
   describe "GET /blogs/:id" do
     before { visit url_for(blog) }
 
-    describe "status code" do
-      it_should_behave_like "an existing page"
-    end
+    it_should_behave_like "an existing page"
 
     describe "title" do
       shared_examples_for "it has title" do
