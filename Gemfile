@@ -21,7 +21,7 @@ end
 group :test do
   gem "rspec-rails"
   gem "capybara"
-  gem "factory_girl_rails", "~> 3.0", :require => false
+  gem "factory_girl_rails", "~> 3.0"
   gem "spork"
   gem "guard-spork"
   gem "guard-rspec"
