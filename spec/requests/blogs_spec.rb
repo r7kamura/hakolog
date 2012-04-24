@@ -11,6 +11,11 @@ describe "Blogs" do
 
   subject { page }
 
+  describe "GET /" do
+    before { visit root_path }
+    it_should_behave_like "an existing page"
+  end
+
   describe "GET /blogs" do
     before { visit blogs_path }
     it_should_behave_like "an existing page"
