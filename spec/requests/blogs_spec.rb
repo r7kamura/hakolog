@@ -14,6 +14,20 @@ describe "Blogs" do
   describe "GET /" do
     before { visit root_path }
     it_should_behave_like "an existing page"
+
+    context "before authentication" do
+      it { should have_selector("a.login") }
+    end
+
+    context "after authentication without blog" do
+      before { pending "I don't know how to set session using Capybara" }
+      it { should have_selector("#create_blog_form") }
+    end
+
+    context "after authentication with blog" do
+      before { pending "I don't know how to set session using Capybara" }
+      it { should have_selector("a.home") }
+    end
   end
 
   describe "GET /blogs" do
