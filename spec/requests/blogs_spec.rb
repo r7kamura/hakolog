@@ -45,8 +45,7 @@ describe "Blogs" do
 
   describe "GET /blogs/:id/entries/new" do
     before do
-      pending "not implemented"
-      visit new_blog_entry_path
+      visit url_for(new_blog_entry_path(:blog_id => blog.id))
     end
 
     it_should_behave_like "an existing page"
@@ -70,7 +69,7 @@ describe "Blogs" do
     it_should_behave_like "an existing page"
 
     it "should create entry" do
-      visit url_for(new_blog_entry_path)
+      visit url_for(new_blog_entry_path(:blog_id => blog.id))
       fill_in :title, @title
       fill_in :body, @body
       click "OK"
