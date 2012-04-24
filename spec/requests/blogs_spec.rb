@@ -5,7 +5,9 @@ describe "Blogs" do
     its(:status_code) { should == 200 }
   end
 
-  let(:blog) { FactoryGirl.create(:blog) }
+  # if you want to arrange blog, override let(:blog_opts)
+  let(:blog_opts) { Hash.new }
+  let(:blog) { FactoryGirl.create(:blog, blog_opts) }
 
   subject { page }
 
@@ -25,7 +27,7 @@ describe "Blogs" do
       end
 
       context "when blog has its title" do
-        let(:blog) { FactoryGirl.create(:blog, :title => "blog title") }
+        let(:blog_opts) { {:title => "blog title"} }
         it_should_behave_like("it has title")
       end
 
