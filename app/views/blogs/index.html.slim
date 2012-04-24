@@ -1,4 +1,4 @@
-- if !session[:dropbox]
+- if !login?
   = link_to "Login", :login_blogs, :class => :login
 
 - elsif !current_blog

@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_blog
 
+  def login?
+    session[:dropbox].present?
+  end
+  helper_method :login?
+
   private
 
   # 1. find by session[:blog_id]
