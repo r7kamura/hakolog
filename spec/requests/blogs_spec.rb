@@ -59,6 +59,16 @@ describe "Blogs" do
     end
   end
 
+  # raise RoutingError when redirect to external url
+  describe "GET /blogs/login" do
+    it "should login Dropbox" do
+      visit root_path
+      expect {
+        click_link "Login"
+      }.to raise_error(ActionController::RoutingError)
+    end
+  end
+
   describe "POST /blogs/:id/entries" do
     before do
       @title = "title 1"
