@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # 1. find by session[:blog_id]
+  # 2. find by session[:dropbox]
+  # unnecessary session will be removed after searching
   def find_current_blog_by_session
     if session[:blog_id]
       if blog = Blog.find_by_id(session[:blog_id])
@@ -16,16 +19,15 @@ class ApplicationController < ActionController::Base
         session.delete(:blog_id)
       end
     end
-
     if session[:dropbox]
       begin
         uid = find_dropbox_uid_by_serialized_session(session[:dropbox])
         return Blog.find_by_dropbox_id(uid)
       rescue DropboxAuthError
         session.delete(:dropbox)
-        nil
       end
     end
+    nil
   end
 
   def find_dropbox_uid_by_serialized_session(dropbox_session)
