@@ -53,7 +53,7 @@ describe "Blogs" do
     it do
       within("#create_entry_form") do
         should have_css("input#title")
-        should have_css("input#body")
+        should have_css("textarea#body")
         should have_css("input[type=submit]")
       end
     end
