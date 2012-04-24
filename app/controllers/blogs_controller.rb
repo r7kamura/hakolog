@@ -23,7 +23,6 @@ class BlogsController < ApplicationController
     abs_url = url_for(:login_callback_blogs)
     redirect_to ds.get_authorize_url(abs_url)
   rescue NoMethodError
-    # please set correct consumer key and secret
     redirect_to :root
   end
 
