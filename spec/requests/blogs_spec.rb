@@ -87,6 +87,7 @@ describe "Blogs" do
     end
     it do
       should have_content(@entry.title)
+      should have_content(@entry.body)
     end
   end
 
