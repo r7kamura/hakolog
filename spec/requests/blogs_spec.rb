@@ -80,6 +80,16 @@ describe "Blogs" do
     end
   end
 
+  describe "GET /blogs/:blog_id/entries/:entry_id" do
+    before do
+      @entry = FactoryGirl.create(:entry, :blog_id => blog.id)
+      visit url_for(blog_entry_path(blog, @entry))
+    end
+    it do
+      should have_content(@entry.title)
+    end
+  end
+
   # raise RoutingError when redirect to external url
   describe "GET /blogs/login" do
     it "should login Dropbox" do
