@@ -39,7 +39,7 @@ class Blog < ActiveRecord::Base
 
     modified_at = metadata["modified"]
     title       = path.split("/entires/", 2)[0]
-    entry = Entry.find_or_initialize_by_title(title)
+    entry = Entry.find_or_initialize_by_blog_id_and_title(self.id, title)
     if (entry.updated_at || Time.local(0)) < modified_at
       entry.body = client.get_file(title).force_encoding("utf-8")
       entry.save
