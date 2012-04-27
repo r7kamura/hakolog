@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def current_blog
-    @current_blog ||= find_current_blog_by_session
+    @current_blog ||= find_current_blog
   end
   helper_method :current_blog
 
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # 1. find by session[:blog_id]
   # 2. find by session[:dropbox]
   # unnecessary session will be removed after searching
-  def find_current_blog_by_session
+  def find_current_blog
     if session[:blog_id]
       if blog = Blog.find_by_id(session[:blog_id])
         return blog
@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
     end
     if session[:dropbox]
       begin
-        uid = find_dropbox_uid_by_serialized_session(session[:dropbox])
         return Blog.find_by_dropbox_id(uid)
       rescue DropboxAuthError
         session.delete(:dropbox)
@@ -35,9 +34,14 @@ class ApplicationController < ActionController::Base
     nil
   end
 
-  def find_dropbox_uid_by_serialized_session(dropbox_session)
-    ds     = DropboxSession.deserialize(dropbox_session)
+  # Dropbox client
+  def client
+    ds     = DropboxSession.deserialize(session[:dropbox])
     client = DropboxClient.new(ds, :app_folder)
+  end
+
+  # Dropbox user id
+  def uid
     client.account_info["uid"]
   end
 end

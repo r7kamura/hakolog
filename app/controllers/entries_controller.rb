@@ -12,11 +12,13 @@ class EntriesController < ApplicationController
   end
 
   def create
-    Entry.create(
+    entry = Entry.create(
       :title   => params[:title],
       :body    => params[:body],
       :blog_id => @blog.id
     )
+    post(entry)
+
     redirect_to @blog
   end
 
@@ -24,5 +26,9 @@ class EntriesController < ApplicationController
 
   def prepare_blog
     @blog = Blog.find_by_id(params[:blog_id]) or redirect_to :root
+  end
+
+  # create file on Dropbox
+  def post(entry)
   end
 end
