@@ -22,11 +22,11 @@ class Blog < ActiveRecord::Base
   # update by Dropbox delta API & save latest version key
   def sync_with_dropbox
     response = get_delta
-    self.version = response["cursor"]
-    self.save
     response["entries"].each do |info|
       create_or_update_entry_by_delta(info)
     end
+    self.version = response["cursor"]
+    self.save
 
     sync_with_dropbox if response[:has_more]
   end
