@@ -1,3 +1,5 @@
+require "tempfile"
+
 class EntriesController < ApplicationController
   before_filter :prepare_blog
 
@@ -18,7 +20,6 @@ class EntriesController < ApplicationController
       :blog_id => @blog.id
     )
     post(entry)
-
     redirect_to @blog
   end
 
@@ -30,5 +31,11 @@ class EntriesController < ApplicationController
 
   # create file on Dropbox
   def post(entry)
+    temp = Tempfile.new("")
+    temp.write(entry.body)
+    temp.close
+    open(temp.path) { |file|
+      client.put_file(entry.title, file, false)
+    }
   end
 end

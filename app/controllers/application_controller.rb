@@ -26,7 +26,9 @@ class ApplicationController < ActionController::Base
     end
     if session[:dropbox]
       begin
-        return Blog.find_by_dropbox_id(uid)
+        blog = Blog.find_by_dropbox_id(uid)
+        session[:blog_id] = blog.id
+        return blog
       rescue DropboxAuthError
         session.delete(:dropbox)
       end
