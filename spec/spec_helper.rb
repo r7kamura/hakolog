@@ -12,6 +12,8 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     config.infer_base_class_for_anonymous_controllers = false
   end
+
+  require "webmock/rspec"
 end
 
 Spork.each_run do
