@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422122106) do
+ActiveRecord::Schema.define(:version => 20120427152251) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120422122106) do
     t.datetime "updated_at",      :null => false
     t.integer  "dropbox_id"
     t.string   "dropbox_session"
+    t.string   "version"
   end
 
   create_table "entries", :force => true do |t|
