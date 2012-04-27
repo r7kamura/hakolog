@@ -11,37 +11,43 @@ class Blog < ActiveRecord::Base
     super || username
   end
 
-  # update by using Dropbox delta API & save latest version key
-  def sync_with_dropbox
-    delta = get_delta
-
-    self.version = delta["cursor"]
-    self.save
-    delta["entries"].each do |entry_info|
-      next if entry_info[1]["is_dir"]
-
-      modified_at = entry_info[1]["modified"]
-      title       = entry_info[0].split("/entires/", 2)[0]
-
-      entry = Entry.find_or_initialize_by_title(title)
-      if (entry.updated_at || Time.local(0)) < modified_at
-        entry.body = client.get_file(title).force_encoding("utf-8")
-        entry.save
-      end
-    end
-
-    sync_with_dropbox if delta[:has_more]
-  end
-
-  # get delta metadata using Dropbox delta API
-  def get_delta
-    client.delta(self.version)
-  end
-
+  # return <#DropboxClient> activated by self.dropbox_session
   def client
     @client ||= DropboxClient.new(
       DropboxSession.deserialize(self.dropbox_session),
       :app_folder
     )
+  end
+
+  # update by Dropbox delta API & save latest version key
+  def sync_with_dropbox
+    response = get_delta
+    self.version = response["cursor"]
+    self.save
+    response["entries"].each do |info|
+      create_or_update_entry_by_delta(info)
+    end
+
+    sync_with_dropbox if response[:has_more]
+  end
+
+  private
+
+  def create_or_update_entry_by_delta(delta)
+    path, metadata = delta
+    return if metadata["is_dir"]
+
+    modified_at = metadata["modified"]
+    title       = path.split("/entires/", 2)[0]
+    entry = Entry.find_or_initialize_by_title(title)
+    if (entry.updated_at || Time.local(0)) < modified_at
+      entry.body = client.get_file(title).force_encoding("utf-8")
+      entry.save
+    end
+  end
+
+  # get delta metadata using Dropbox delta API
+  def get_delta
+    client.delta(self.version)
   end
 end
