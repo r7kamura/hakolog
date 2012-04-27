@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
     temp.write(entry.body)
     temp.close
     open(temp.path) { |file|
-      client.put_file(entry.title, file, false)
+      client.put_file("entries/" + entry.title, file, false)
     }
   end
 end
