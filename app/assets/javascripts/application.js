@@ -15,5 +15,5 @@
 //= require_tree .
 
 $(function() {
-  $('header nav a').tipsy();
+  $('a[original-title]').tipsy();
 });
