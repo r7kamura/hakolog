@@ -1,4 +1,4 @@
-Tamayura::Application.routes.draw do
+Hakolog::Application.routes.draw do
   root :to => "blogs#index"
 
   resources :blogs do

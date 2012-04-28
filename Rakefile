@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Tamayura::Application.load_tasks
+Hakolog::Application.load_tasks
