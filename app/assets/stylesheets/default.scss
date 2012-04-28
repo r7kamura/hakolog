@@ -55,12 +55,16 @@ header {
 
     ul {
       margin: 0;
-    }
 
-    li {
-      float: left;
-      margin-right: 30px;
-      list-style-type: none;
+      li {
+        float: left;
+        padding: 0 10px;
+        list-style-type: none;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
     }
   }
 }
