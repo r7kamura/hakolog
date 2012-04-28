@@ -1,3 +1,5 @@
+$text_color: #333;
+
 @mixin clearfix {
   &:after {
     content: ".";
@@ -30,10 +32,11 @@ body {
 }
 
 header {
+  margin-bottom: 20px;
   @include clearfix;
 
   a {
-    color: black;
+    color: $text_color;
   }
 
   h1 {
