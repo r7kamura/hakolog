@@ -1,0 +1,57 @@
+@mixin clearfix {
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #12C;
+  text-decoration: none;
+}
+
+h2, h3, h4, h5, h6 {
+  margin: 2em 0 0;
+}
+
+body {
+  width: 920px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  @include clearfix;
+
+  a {
+    color: black;
+  }
+
+  h1 {
+    float: left;
+    font-size: 30px;
+    line-height: 45px;
+  }
+
+  nav {
+    float: right;
+    text-align: right;
+    font-size: 30px;
+    line-height: 45px;
+    @include clearfix;
+
+    li {
+      float: left;
+      margin-right: 30px;
+      list-style-type: none;
+    }
+  }
+}
