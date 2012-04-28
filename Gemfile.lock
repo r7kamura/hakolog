@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/r7kamura/dropbox_sdk.git
-  revision: 666f482f22ab3cf2c4dbfca93f2554b3104aa839
+  revision: e7b68ea3bf8d41e2cb2f78d253563bbf0cc52f2a
   specs:
-    dropbox_sdk (0.0.1)
+    dropbox_sdk (0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -186,7 +186,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
-  dropbox_sdk!
+  dropbox_sdk (>= 0.0.2)!
   factory_girl_rails (~> 3.0)
   growl
   guard-rspec

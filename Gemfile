@@ -6,7 +6,7 @@ gem "jquery-rails"
 
 gem "slim-rails"
 gem "settingslogic"
-gem "dropbox_sdk", :git => "git://github.com/r7kamura/dropbox_sdk.git"
+gem "dropbox_sdk", ">= 0.0.2", :git => "git://github.com/r7kamura/dropbox_sdk.git"
 
 group :assets do
   gem "sass-rails",   "~> 3.2.3"
