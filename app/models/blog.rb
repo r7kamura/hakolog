@@ -1,7 +1,7 @@
 class Blog < ActiveRecord::Base
   attr_accessible :username, :dropbox_id, :dropbox_session
 
-  has_many :entries
+  has_many :entries, :order => "modified_at DESC"
 
   %w[username dropbox_session dropbox_id].each do |attr|
     validates attr, :uniqueness => true, :presence => true
