@@ -1,5 +1,6 @@
 @import "mixin";
 
+$link_color: steelBlue;
 $text_color: #444;
 $text_light_color: #888;
 $text_very_light_color: #ccc;
@@ -10,7 +11,7 @@ $text_very_light_color: #ccc;
 }
 
 a {
-  color: steelBlue;
+  color: $link_color;
   text-decoration: none;
 }
 
@@ -66,6 +67,10 @@ header {
 
         &:last-child {
           padding-right: 0;
+        }
+
+        a:hover {
+          color: $link_color;
         }
       }
     }
