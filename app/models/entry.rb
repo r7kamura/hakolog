@@ -4,6 +4,6 @@ class Entry < ActiveRecord::Base
   belongs_to :blog
 
   def can_overwrite?(modified_at)
-    (entry.updated_at || Time.local(0)) < modified_at
+    entry.updated_at.nil? || entry.updated_at < modified_at
   end
 end
