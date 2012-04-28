@@ -1,5 +1,5 @@
-- if login? && !current_blog
-  = form_tag :blogs, :method => :post, :id => :create_blog_form do
+- if @new_blog
+  = form_for @new_blog, :id => :create_blog_form do
     = text_field_tag :username, ""
     = submit_tag :OK
 

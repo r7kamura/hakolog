@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   def index
-    @blogs = Blog.order("synced_at DESC")
+    @blogs    = Blog.order("synced_at DESC")
+    @new_blog = Blog.new if login? && !current_blog
   end
 
   def show

@@ -1,6 +1,7 @@
 @import "mixin";
 
 $text_color: #444;
+$text_light_color: #888;
 
 * {
   margin: 0;
@@ -26,9 +27,9 @@ html {
 }
 
 body {
-  max-width: 920px;
+  max-width: 880px;
   margin: 0 auto;
-  padding: 0 20px 100px;
+  padding: 0 40px 100px;
   line-height: 1.7;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
 }
@@ -104,6 +105,25 @@ header {
 
     .datetime {
       margin-right: 10px;
+    }
+  }
+}
+
+#entries_show {
+  article {
+    h1 {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .datetime {
+      color: $text_light_color;
+
+      .icon {
+        padding-right: 3px;
+        line-height: 0.7;
+        font-size: 1.4em;
+      }
     }
   }
 }

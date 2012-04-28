@@ -2,5 +2,10 @@ article
   h1
     = @entry.title
 
+  .datetime
+    span.icon
+      = unicode(:clock)
+    = pretty_datetime(@entry.modified_at)
+
   .body
     = @entry.body

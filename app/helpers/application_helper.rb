@@ -6,6 +6,7 @@ module ApplicationHelper
     :login  => 9111,
     :logout => 8998,
     :hot    => 9832,
+    :clock  => 8986,
   }
 
   def unicode(name)
@@ -18,5 +19,9 @@ module ApplicationHelper
 
   def pretty_date(datetime)
     (datetime || DateTime.new(0)).strftime("%Y-%m-%d")
+  end
+
+  def pretty_datetime(datetime)
+    (datetime || DateTime.new(0)).strftime("%Y-%m-%d %H:%M")
   end
 end

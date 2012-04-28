@@ -21,8 +21,10 @@ html
             li= link_to unicode(:top), :root, "original-title" => "Top Page"
             li= link_to unicode(:home), current_blog, "original-title" => "Your Blog"
             li= link_to unicode(:edit), new_blog_entry_path(current_blog), "original-title" => "Create a New Entry"
+
+          - if login?
             li= link_to unicode(:logout), logout_blogs_path(current_blog), "original-title" => "Log Out"
-          - elsif !login?
+          - else
             li= link_to unicode(:login), login_blogs_path, "original-title" => "Log In", :class => :large
 
     = yield
