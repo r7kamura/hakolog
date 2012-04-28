@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
   before_filter :prepare_blog
 
   def index
+    @entry_count = Entry.count(:conditions => {:blog_id => @blog.id})
   end
 
   def show

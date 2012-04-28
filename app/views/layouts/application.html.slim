@@ -19,7 +19,7 @@ html
         ul
           - if current_blog
             li= link_to :root, "original-title" => "Top Page" do
-              i.icon-arrow-up
+              i.icon-barcode
             li= link_to current_blog, "original-title" => "Your Blog" do
               i.icon-home
             li= link_to unicode(:edit), new_blog_entry_path(current_blog), "original-title" => "Create a New Entry"

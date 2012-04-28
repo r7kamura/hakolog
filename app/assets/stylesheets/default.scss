@@ -2,6 +2,7 @@
 
 $text_color: #444;
 $text_light_color: #888;
+$text_very_light_color: #ccc;
 
 * {
   margin: 0;
@@ -102,7 +103,21 @@ header {
 }
 
 #entries_index {
+  .stats {
+    .entry_count {
+      font-size: 30px;
+      font-weight: bold;
+      color: $text_very_light_color;
+
+      .icon {
+        margin-right: 3px;
+        font-size: 50px;
+      }
+    }
+  }
+
   .entry {
+    line-height: 2;
     @include clearfix;
 
     .datetime, .title {

@@ -1,3 +1,9 @@
+.stats
+  .entry_count
+    i.icon-file.icon
+    span.value
+      = @entry_count
+
 ul.entries
   - @blog.entries.each do |entry|
     li.entry
