@@ -49,8 +49,7 @@ header {
 
   nav {
     float: right;
-    text-align: right;
-    font-size: 30px;
+    font-size: 40px;
     @include clearfix;
 
     ul {
@@ -65,6 +64,10 @@ header {
           padding-right: 0;
         }
       }
+    }
+
+    .large {
+      font-size: 1.5em;
     }
   }
 }

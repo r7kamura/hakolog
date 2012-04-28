@@ -15,12 +15,14 @@ html
         - else
           = link_to Hakolog, :root
 
-      - if current_blog
-        nav
-          ul
+      nav
+        ul
+          - if current_blog
             li= link_to unicode(:top), :root, "original-title" => "Top Page"
             li= link_to unicode(:home), current_blog, "original-title" => "Your Blog"
             li= link_to unicode(:edit), new_blog_entry_path(current_blog), "original-title" => "Create a New Entry"
             li= link_to unicode(:logout), logout_blogs_path(current_blog), "original-title" => "Log Out"
+          - else
+            li= link_to unicode(:login), login_blogs_path, "original-title" => "Log In", :class => :large
 
     = yield

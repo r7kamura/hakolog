@@ -3,6 +3,7 @@ module ApplicationHelper
     :top    => 9729,
     :home   => 8686,
     :edit   => 9997,
+    :login  => 9111,
     :logout => 8998,
     :hot    => 9832,
   }
