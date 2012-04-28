@@ -12,7 +12,8 @@ class BlogsController < ApplicationController
     blog = Blog.new(
       :username        => params[:username],
       :dropbox_session => session[:dropbox],
-      :dropbox_id      => uid
+      :dropbox_id      => uid,
+      :synced_at       => Time.now
     )
     session[:blog_id] = blog.id if blog.save
     redirect_to :root
