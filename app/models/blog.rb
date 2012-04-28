@@ -23,7 +23,7 @@ class Blog < ActiveRecord::Base
   def sync_with_dropbox
     response = get_delta
     response["entries"].each do |info|
-      create_or_update_entry_by_delta(info)
+      sync_entry_by_delta(info)
     end
     self.version = response["cursor"]
     self.save
@@ -33,7 +33,7 @@ class Blog < ActiveRecord::Base
 
   private
 
-  def create_or_update_entry_by_delta(delta)
+  def sync_entry_by_delta(delta)
     path, metadata = delta
     return if metadata["is_dir"]
 
