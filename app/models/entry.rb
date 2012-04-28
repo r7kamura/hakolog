@@ -15,8 +15,8 @@ class Entry < ActiveRecord::Base
     :no_intra_emphasis   => true,
   }
 
-  def self.create_with_path(args)
-    create args.merge(:path => BASE_PATH + args.delete(:path))
+  def self.create_with_title(args)
+    create args.merge(:path => BASE_PATH + args.delete(:title))
   end
 
   def title

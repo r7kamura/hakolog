@@ -43,7 +43,7 @@ class Blog < ActiveRecord::Base
     # path was edited or created
     elsif !metadata["is_dir"] && path =~ /\.md$/
       modified_at = metadata["modified"]
-      entry = Entry.find_or_initialize_by_blog_id_and_title(self.id, path)
+      entry = Entry.find_or_initialize_by_blog_id_and_path(self.id, path)
       if entry.can_overwrite?(modified_at)
         entry.body = client.get_file(path).force_encoding("utf-8")
         entry.save
