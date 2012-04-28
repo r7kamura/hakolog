@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  attr_accessible :blog_id, :body, :extension, :path
+  attr_accessible :blog_id, :body, :extension, :path, :modified_at
 
   belongs_to :blog
 
@@ -16,7 +16,10 @@ class Entry < ActiveRecord::Base
   }
 
   def self.create_with_title(args)
-    create args.merge(:path => BASE_PATH + args.delete(:title))
+    create args.merge(
+      :path        => BASE_PATH + args.delete(:title),
+      :modified_at => Time.now
+    )
   end
 
   def title

@@ -15,9 +15,9 @@ class EntriesController < ApplicationController
 
   def create
     entry = Entry.create_with_title(
-      :title   => params[:title],
-      :body    => params[:body],
-      :blog_id => @blog.id
+      :title       => params[:title],
+      :body        => params[:body],
+      :blog_id     => @blog.id
     )
     post(entry)
     redirect_to @blog

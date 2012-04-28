@@ -46,6 +46,7 @@ class Blog < ActiveRecord::Base
       entry = Entry.find_or_initialize_by_blog_id_and_path(self.id, path)
       if entry.can_overwrite?(modified_at)
         entry.body = client.get_file(path).force_encoding("utf-8")
+        entry.modified_at = modified_at
         entry.save
       end
     end
