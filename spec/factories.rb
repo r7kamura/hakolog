@@ -6,6 +6,6 @@ FactoryGirl.define do
   end
 
   factory :entry do
-    sequence(:title) { |n| "entry title #{n}" }
+    sequence(:path) { |n| Entry::BASE_PATH + "entry_title#{n}.md" }
   end
 end

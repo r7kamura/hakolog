@@ -14,7 +14,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    entry = Entry.create(
+    entry = Entry.create_with_title(
       :title   => params[:title],
       :body    => params[:body],
       :blog_id => @blog.id
@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
     temp.write(entry.body)
     temp.close
     open(temp.path) { |file|
-      client.put_file("entries/" + entry.title, file, false)
+      client.put_file(entry.path, file, false)
     }
   end
 end
