@@ -1,6 +1,6 @@
 @import "mixin";
 
-$text_color: #333;
+$text_color: #444;
 
 * {
   margin: 0;
@@ -8,7 +8,7 @@ $text_color: #333;
 }
 
 a {
-  color: #12C;
+  color: steelBlue;
   text-decoration: none;
 }
 
@@ -16,15 +16,25 @@ h2, h3, h4, h5, h6 {
   margin: 2em 0 0;
 }
 
+ul, ol {
+  padding: 0 0 0 1.5em;
+}
+
+html {
+  background: snow;
+}
+
 body {
-  width: 920px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px 100px;
+  line-height: 1.7;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
 }
 
 header {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  line-height: 100px;
   @include clearfix;
 
   a {
@@ -34,15 +44,13 @@ header {
   h1 {
     float: left;
     margin: 0;
-    font-size: 30px;
-    line-height: 45px;
+    font-size: 50px;
   }
 
   nav {
     float: right;
     text-align: right;
     font-size: 30px;
-    line-height: 45px;
     @include clearfix;
 
     ul {

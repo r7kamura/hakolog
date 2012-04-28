@@ -7,10 +7,13 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
 
-  body
+  body*{:id => unique_class_name}
     header
       h1
-        = link_to Hakolog, :root
+        - if @blog
+          = link_to @blog.title, @blog
+        - else
+          = link_to Hakolog, :root
 
       - if current_blog
         nav
