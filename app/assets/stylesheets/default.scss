@@ -1,14 +1,6 @@
-$text_color: #333;
+@import "mixin";
 
-@mixin clearfix {
-  &:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-  }
-}
+$text_color: #333;
 
 * {
   margin: 0;
