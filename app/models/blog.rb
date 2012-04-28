@@ -36,15 +36,15 @@ class Blog < ActiveRecord::Base
   def sync_entry_by_delta(delta)
     path, metadata = delta
 
+    # path was deleted
     if metadata.nil?
-      # path was deleted
       Entry.find_by_title(path).try(:destroy)
 
+    # path was edited or created
     elsif !metadata["is_dir"] && path =~ /\.md$/
-      # path was edited or created
       modified_at = metadata["modified"]
       entry = Entry.find_or_initialize_by_blog_id_and_title(self.id, path)
-      if (entry.updated_at || Time.local(0)) < modified_at
+      if entry.can_overwrite?(modified_at)
         entry.body = client.get_file(path).force_encoding("utf-8")
         entry.save
       end
