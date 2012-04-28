@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   def index
+    @blogs = Blog.order("synced_at DESC")
   end
 
   def show

@@ -1,7 +1,15 @@
-- if !login?
-  = link_to "Login", :login_blogs, :class => :login
-
-- elsif !current_blog
+- if login? && !current_blog
   = form_tag :blogs, :method => :post, :id => :create_blog_form do
     = text_field_tag :username, ""
     = submit_tag :OK
+
+section
+  h1
+    = unicode(:hot)
+  ul
+    - @blogs.each do |blog|
+      li.blog
+        .datetime
+          = pretty_date(blog.synced_at)
+        .title
+          = link_to blog.title, blog

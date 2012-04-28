@@ -25,7 +25,8 @@ class Blog < ActiveRecord::Base
     response["entries"].each do |info|
       sync_entry_by_delta(info)
     end
-    self.version = response["cursor"]
+    self.version   = response["cursor"]
+    self.synced_at = Time.now
     self.save
 
     sync_with_dropbox if response[:has_more]

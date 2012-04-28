@@ -17,7 +17,8 @@ h2, h3, h4, h5, h6 {
 }
 
 ul, ol {
-  padding: 0 0 0 1.5em;
+  padding: 0;
+  list-style-type: none;
 }
 
 html {
@@ -72,21 +73,37 @@ header {
   }
 }
 
+#blogs_index {
+  section {
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .blog {
+    @include clearfix;
+
+    .datetime, .title {
+      float: left;
+    }
+
+    .datetime {
+      margin-right: 10px;
+    }
+  }
+}
+
 #entries_index {
-  .entries {
-    padding: 0;
+  .entry {
+    @include clearfix;
 
-    .entry {
-      overflow: hidden;
-      @include clearfix;
+    .datetime, .title {
+      float: left;
+    }
 
-      .modified_at, .title {
-        float: left;
-      }
-
-      .modified_at {
-        margin-right: 10px;
-      }
+    .datetime {
+      margin-right: 10px;
     }
   }
 }

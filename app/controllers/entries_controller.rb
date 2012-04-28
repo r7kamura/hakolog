@@ -19,7 +19,11 @@ class EntriesController < ApplicationController
       :body        => params[:body],
       :blog_id     => @blog.id
     )
+
     post(entry)
+    @blog.synced_at = Time.now
+    @blog.save
+
     redirect_to @blog
   end
 
