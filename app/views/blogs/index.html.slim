@@ -5,8 +5,9 @@
 
 section
   h1
-    = unicode(:hot)
-  ul
+    i.icon-inbox
+
+  ul.blogs
     - @blogs.each do |blog|
       li.blog
         .datetime

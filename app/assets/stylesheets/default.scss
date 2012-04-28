@@ -32,6 +32,7 @@ body {
   padding: 0 40px 100px;
   line-height: 1.7;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
+  color: $text_color;
 }
 
 header {
@@ -79,18 +80,23 @@ header {
     h1 {
       margin: 0;
       padding: 0;
+      line-height: 1;
     }
   }
 
-  .blog {
-    @include clearfix;
+  .blogs {
+    margin-top: 0;
 
-    .datetime, .title {
-      float: left;
-    }
+    .blog {
+      @include clearfix;
 
-    .datetime {
-      margin-right: 10px;
+      .datetime, .title {
+        float: left;
+      }
+
+      .datetime {
+        margin-right: 10px;
+      }
     }
   }
 }

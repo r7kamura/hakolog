@@ -18,13 +18,17 @@ html
       nav
         ul
           - if current_blog
-            li= link_to unicode(:top), :root, "original-title" => "Top Page"
-            li= link_to unicode(:home), current_blog, "original-title" => "Your Blog"
+            li= link_to :root, "original-title" => "Top Page" do
+              i.icon-arrow-up
+            li= link_to current_blog, "original-title" => "Your Blog" do
+              i.icon-home
             li= link_to unicode(:edit), new_blog_entry_path(current_blog), "original-title" => "Create a New Entry"
 
           - if login?
-            li= link_to unicode(:logout), logout_blogs_path(current_blog), "original-title" => "Log Out"
+            li= link_to logout_blogs_path(current_blog), "original-title" => "Log Out" do
+              i.icon-signout
           - else
-            li= link_to unicode(:login), login_blogs_path, "original-title" => "Log In", :class => :large
+            li= link_to login_blogs_path, "original-title" => "Log In", :class => :large do
+              i.icon-signin
 
     = yield
