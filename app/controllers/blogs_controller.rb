@@ -31,4 +31,10 @@ class BlogsController < ApplicationController
     session[:dropbox] = ds.serialize
     redirect_to :root
   end
+
+  def logout
+    session.delete(:blog_id)
+    session.delete(:dropbox)
+    redirect_to :root
+  end
 end

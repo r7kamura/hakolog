@@ -5,6 +5,7 @@ Hakolog::Application.routes.draw do
     collection do
       get "login"
       get "login_callback"
+      get "logout"
     end
 
     resources :entries

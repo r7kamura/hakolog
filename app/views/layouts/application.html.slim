@@ -13,5 +13,6 @@ html
       - if current_blog
         = link_to "Home", current_blog
         = link_to "New", new_blog_entry_path(current_blog)
+        = link_to "Logout", logout_blogs_path(current_blog)
 
     = yield
