@@ -64,3 +64,22 @@ header {
     }
   }
 }
+
+#entries_index {
+  .entries {
+    padding: 0;
+
+    .entry {
+      overflow: hidden;
+      @include clearfix;
+
+      .modified_at, .title {
+        float: left;
+      }
+
+      .modified_at {
+        margin-right: 10px;
+      }
+    }
+  }
+}

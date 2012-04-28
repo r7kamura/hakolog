@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
+    redirect_to blog_entries_path(@blog)
   end
 
   def create

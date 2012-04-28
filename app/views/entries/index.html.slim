@@ -1,0 +1,7 @@
+ul.entries
+  - @blog.entries.each do |entry|
+    li.entry
+      .modified_at
+        = pretty_date(entry.modified_at)
+      .title
+        = link_to entry.title, [@blog, entry]
