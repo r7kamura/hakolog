@@ -41,6 +41,7 @@ header {
 
   h1 {
     float: left;
+    margin: 0;
     font-size: 30px;
     line-height: 45px;
   }
@@ -51,6 +52,10 @@ header {
     font-size: 30px;
     line-height: 45px;
     @include clearfix;
+
+    ul {
+      margin: 0;
+    }
 
     li {
       float: left;
