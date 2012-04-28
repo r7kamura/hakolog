@@ -3,6 +3,7 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
+  DEFAULT_EXT = ".md"
   BASE_PATH = "/entries/"
   MARKDOWN_OPTION = {
     :autolink            => true,
@@ -17,13 +18,14 @@ class Entry < ActiveRecord::Base
 
   def self.create_with_title(args)
     create args.merge(
-      :path        => BASE_PATH + args.delete(:title),
+      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
       :modified_at => Time.now
     )
   end
 
   def title
     path && path.split(BASE_PATH, 2).last
+    path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
   end
 
   def body
