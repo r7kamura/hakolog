@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
-  paginates_per 1
+  paginates_per 5
 
   DEFAULT_EXT = ".md"
   BASE_PATH = "/entries/"
