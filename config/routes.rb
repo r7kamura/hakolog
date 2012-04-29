@@ -8,6 +8,10 @@ Hakolog::Application.routes.draw do
       get "logout"
     end
 
-    resources :entries
+    resources :entries do
+      collection do
+        get "search"
+      end
+    end
   end
 end

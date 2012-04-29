@@ -1,5 +1,33 @@
 @import "mixin";
 
+@mixin entry_index {
+  .stats {
+    .entry_count {
+      font-size: 30px;
+      font-weight: bold;
+      color: $text_very_light_color;
+
+      .icon {
+        margin-right: 3px;
+        font-size: 50px;
+      }
+    }
+  }
+
+  .entry {
+    line-height: 2;
+    @include clearfix;
+
+    .datetime, .title {
+      float: left;
+    }
+
+    .datetime {
+      margin-right: 10px;
+    }
+  }
+}
+
 $link_color: steelBlue;
 $text_color: #444;
 $text_light_color: #888;
@@ -144,31 +172,11 @@ form.well {
 }
 
 #entries_index {
-  .stats {
-    .entry_count {
-      font-size: 30px;
-      font-weight: bold;
-      color: $text_very_light_color;
+  @include entry_index;
+}
 
-      .icon {
-        margin-right: 3px;
-        font-size: 50px;
-      }
-    }
-  }
-
-  .entry {
-    line-height: 2;
-    @include clearfix;
-
-    .datetime, .title {
-      float: left;
-    }
-
-    .datetime {
-      margin-right: 10px;
-    }
-  }
+#entries_search {
+  @include entry_index;
 }
 
 #entries_show {

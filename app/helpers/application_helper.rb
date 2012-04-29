@@ -1,13 +1,14 @@
 module ApplicationHelper
   UNICODE_MAP = {
-    :top    => 9729,
-    :home   => 8686,
-    :edit   => 9997,
-    :login  => 9111,
-    :logout => 8998,
-    :hot    => 9832,
-    :clock  => 8986,
-    :check  => 10004,
+    :top      => 9729,
+    :home     => 8686,
+    :edit     => 9997,
+    :login    => 9111,
+    :logout   => 8998,
+    :hot      => 9832,
+    :clock    => 8986,
+    :scissors => 9986,
+    :check    => 10004,
   }
 
   def unicode(name)

@@ -3,6 +3,8 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
+  scope :search, lambda { |query| where("body like ?", "%#{query}%") }
+
   paginates_per 10
 
   DEFAULT_EXT = ".md"
