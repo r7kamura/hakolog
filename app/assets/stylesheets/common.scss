@@ -1,3 +1,8 @@
+$link_color: steelBlue;
+$text_color: #444;
+$text_light_color: #888;
+$text_very_light_color: #ccc;
+
 @mixin clearfix {
   &:after {
     content: ".";
