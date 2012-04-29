@@ -3,7 +3,9 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
-  scope :search, lambda { |query| where("body like ?", "%#{query}%") }
+  scope :search, lambda { |query|
+    where("path like ? or body like ?", "%#{query}%", "%#{query}%")
+  }
 
   paginates_per 10
 
