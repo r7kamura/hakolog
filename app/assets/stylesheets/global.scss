@@ -10,8 +10,22 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 0;
+}
+
+p + p,
+form p {
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-weight: normal;
+}
+
 h2, h3, h4, h5, h6 {
   margin: 2em 0 0;
+  font-weight: normal;
 }
 
 ul, ol {
@@ -52,6 +66,7 @@ header {
     margin: 0;
     line-height: 100px;
     font-size: 50px;
+    font-weight: bold;
 
     i {
       padding-right: 5px;
