@@ -19,6 +19,9 @@ class Entry < ActiveRecord::Base
   }
 
   def self.create_with_title(args)
+    # SHOULD: use validation
+    return if args[:title].blank?
+
     create args.merge(
       :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
       :modified_at => Time.now

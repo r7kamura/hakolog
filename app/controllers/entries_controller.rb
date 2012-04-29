@@ -16,17 +16,18 @@ class EntriesController < ApplicationController
   end
 
   def create
-    entry = Entry.create_with_title(
-      :title       => params[:title],
-      :body        => params[:body],
-      :blog_id     => @blog.id
-    )
-
-    post(entry)
-    @blog.synced_at = Time.now
-    @blog.save
-
-    redirect_to @blog
+    if entry = Entry.create_with_title(
+        :title       => params[:title],
+        :body        => params[:body],
+        :blog_id     => @blog.id
+      ) then
+      post(entry)
+      @blog.synced_at = Time.now
+      @blog.save
+      redirect_to @blog
+    else
+      redirect_to request.referer
+    end
   end
 
   private
