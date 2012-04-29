@@ -20,7 +20,8 @@ html
           - if current_blog
             li= link_to current_blog, "original-title" => "Your Blog" do
               i.icon-home
-            li= link_to unicode(:edit), new_blog_entry_path(current_blog), "original-title" => "Create a New Entry"
+            li= link_to new_blog_entry_path(current_blog), "original-title" => "Create a New Entry" do
+              i.icon-pencil
 
           - if login?
             li= link_to logout_blogs_path(current_blog), "original-title" => "Log Out" do

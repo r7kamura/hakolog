@@ -1,7 +1,9 @@
 - if @new_blog
-  = form_for @new_blog, :id => :create_blog_form do
-    = text_field_tag :username, ""
-    = submit_tag :OK
+  = form_for @new_blog, :id => :create_blog_form, :class => "well" do
+    p
+      = text_field_tag :username, ""
+    p
+      = submit_tag :OK
 
 - elsif current_blog
   = render :partial => "entries/new_entry_form"
