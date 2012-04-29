@@ -8,23 +8,23 @@
 - elsif current_blog
   = render :partial => "entries/new_entry_form"
 
-.hero-unit 
-  h1
-    = "Hakologとは..."
+- else
+  .hero-unit
+    h1
+      = "Hakologとは..."
+    p
+      = "Hakologは、ローカルで編集したドキュメントをDropboxのフォルダに置くだけで、ブログを更新できるサービスです。"
 
-  p 
-    = "Hakologは、ローカルで編集したドキュメンドをDropboxのフォルダに置くだけで、ブログを更新できるサービスです。"
-
-  .btn.btn-primary.btn-large
-    = "ログイン"
-
-  h2
-    = link_to image_tag("about.jpg")
+    = link_to login_blogs_path, :class => "btn btn-info" do
+      i.icon-signin
+      = "Login with Dropbox"
+    p
+      = link_to image_tag("about.jpg")
 
 section
   h1
-    i.icon-inbox    
-   
+    i.icon-inbox
+
   ul.blogs
     - @blogs.each do |blog|
       li.blog
