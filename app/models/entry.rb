@@ -7,8 +7,8 @@ class Entry < ActiveRecord::Base
 
   paginates_per 10
 
-  DEFAULT_EXT = ".md"
-  BASE_PATH = "/entries/"
+  DEFAULT_EXT     = ".md"
+  BASE_PATH       = "/entries/"
   MARKDOWN_OPTION = {
     :autolink            => true,
     :fenced_code_blocks  => true,
