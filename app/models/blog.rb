@@ -43,6 +43,7 @@ class Blog < ActiveRecord::Base
       Rails.root.join("README.md").read,
       true
     )
+    sync_with_dropbox
   end
 
   private
