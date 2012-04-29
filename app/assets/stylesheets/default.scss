@@ -63,7 +63,7 @@ textarea {
 }
 
 html {
-  background: snow;
+  background: url("/assets/bg.png");
 }
 
 body {
@@ -88,6 +88,10 @@ header {
     margin: 0;
     line-height: 100px;
     font-size: 50px;
+
+    i {
+      padding-right: 5px;
+    }
   }
 
   nav {
