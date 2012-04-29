@@ -17,24 +17,21 @@ html
             i.icon-folder-open
             = "Hakolog"
 
-
       nav
         ul
+          li= link_to :root, "original-title" => "Top" do
+            i.icon-home
           - if current_blog
-            li= link_to current_blog, "original-title" => "Your Blog" do
-              i.icon-home
-            li= link_to new_blog_entry_path(current_blog), "original-title" => "Create a New Entry" do
+            li= link_to current_blog, "original-title" => "You" do
+              i.icon-user
+            li= link_to new_blog_entry_path(current_blog), "original-title" => "Write" do
               i.icon-pencil
 
           - if login?
-            li= link_to logout_blogs_path(current_blog), "original-title" => "Log Out" do
+            li= link_to logout_blogs_path(current_blog), "original-title" => "Logout" do
               i.icon-signout
           - else
             li= link_to login_blogs_path, "original-title" => "Log In", :class => :large do
               i.icon-signin
 
     = yield
-
-    footer
-      = link_to :root, "original-title" => "Powered by Hakolog" do
-        i.icon-chevron-up
