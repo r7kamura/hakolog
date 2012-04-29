@@ -1,14 +1,6 @@
 @import "common";
 
 #blogs_index {
-  section {
-    h1 {
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-    }
-  }
-
   .hero-unit {
     text-align: center;
     background: white;
@@ -26,19 +18,28 @@
     }
   }
 
-  .blogs {
-    margin-top: 0;
+  section {
+    margin-top: 100px;
 
-    .blog {
-      @include clearfix;
+    h1 {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
 
-      .datetime, .title {
-        float: left;
-      }
+    .blogs {
+      .blog {
+        @include clearfix;
 
-      .datetime {
-        margin-right: 10px;
+        .datetime, .title {
+          float: left;
+        }
+
+        .datetime {
+          margin-right: 10px;
+        }
       }
     }
   }
+
 }
