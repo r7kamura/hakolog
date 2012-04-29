@@ -11,10 +11,12 @@ html
     header
       h1
         - if @blog
-          = link_to @blog.title, @blog
+          = link_to @blog do
+            i.icon-user
+            = @blog.title
         - else
           = link_to :root do
-            i.icon-folder-open
+            = image_tag "logo.png", :size => "60x60"
             = "Hakolog"
 
       nav
