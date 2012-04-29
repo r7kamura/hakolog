@@ -11,9 +11,6 @@ gem "dropbox_sdk", ">= 0.0.2", :git => "git://github.com/r7kamura/dropbox_sdk.gi
 gem "font-awesome-rails"
 gem "kaminari"
 
-# for Heroku
-gem "pg"
-
 group :assets do
   gem "sass-rails",   "~> 3.2.3"
   gem "coffee-rails", "~> 3.2.1"
@@ -37,4 +34,10 @@ group :test do
   gem "guard-rspec"
   gem "growl"
   gem "webmock"
+end
+
+group :production do
+  # for Heroku
+  gem "pg"
+  gem "thin"
 end
