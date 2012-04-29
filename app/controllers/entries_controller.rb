@@ -39,8 +39,9 @@ class EntriesController < ApplicationController
       if entry.update_with_title(
         :title => params[:title],
         :body  => params[:body],
-      ) && entry.path != old_path then
-        rename(old_path, entry.path)
+      ) then
+        move(old_path, entry.path) if entry.path != old_path
+        post(entry, true)
       end
     end
     redirect_to request.referer
@@ -53,17 +54,17 @@ class EntriesController < ApplicationController
   end
 
   # create file on Dropbox
-  def post(entry)
+  def post(entry, overwrite = false)
     temp = Tempfile.new("")
     temp.write(entry.body)
     temp.close
     open(temp.path) { |file|
-      client.put_file(entry.path, file, false)
+      client.put_file(entry.path, file, overwrite)
     }
   end
 
-  # rename file on Dropbox
-  def rename(old_path, new_path)
+  # move file on Dropbox
+  def move(old_path, new_path)
     client.file_move(old_path, new_path)
   end
 end
