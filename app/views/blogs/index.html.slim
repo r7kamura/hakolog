@@ -1,12 +1,4 @@
-- if @new_blog
-  = form_tag :blogs, :class => "well" do
-    p
-      = text_field_tag :username, "", :placeholder => "#{unicode(:edit)} Username".html_safe
-    p
-      = button_tag :class => "btn btn-info", :type => :submit do
-        i.icon-ok
-
-- elsif current_blog
+- if current_blog
   = render :partial => "entries/new_entry_form"
 
 - else
@@ -16,10 +8,21 @@
       br
       | 最高のソリューション
 
-    p.button_container
-      = link_to login_blogs_path, :class => "btn btn-info" do
-        i.icon-signin
-        = "Login with Dropbox"
+
+    - if login?
+      = form_tag :blogs, :class => :form_create_blog do
+        .input-prepend.input-append
+          span.add-on
+            i.icon-user
+          = text_field_tag :username, "", :placeholder => "username", :class => "span4"
+          = button_tag :class => "btn btn-info", :type => :submit do
+            i.icon-ok
+    - else
+      p.button_container
+        = link_to login_blogs_path, :class => "btn btn-info" do
+          i.icon-signin
+          = "Login with Dropbox"
+
     p
       = link_to image_tag("about.jpg")
 

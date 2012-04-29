@@ -18,8 +18,15 @@
       line-height: 1.3;
     }
 
+    .form_create_blog,
     .button_container {
       margin: 2em 0 1em;
+    }
+
+    .form_create_blog {
+      input[type=text] {
+        width: 130px;
+      }
     }
   }
 

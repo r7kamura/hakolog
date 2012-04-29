@@ -1,7 +1,6 @@
 class BlogsController < ApplicationController
   def index
-    @blogs    = Blog.order("synced_at DESC").page(params[:page])
-    @new_blog = Blog.new if login? && !current_blog
+    @blogs = Blog.order("synced_at DESC").page(params[:page])
   end
 
   def show
@@ -17,7 +16,7 @@ class BlogsController < ApplicationController
       :synced_at       => Time.now
     )
     session[:blog_id] = blog.id if blog.save
-    redirect_to :root
+    redirect_to blog
   end
 
   def login
