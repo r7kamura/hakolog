@@ -33,7 +33,6 @@ group :test do
   gem "guard-spork"
   gem "guard-rspec"
   gem "growl"
-  gem "webmock"
 end
 
 group :production do
