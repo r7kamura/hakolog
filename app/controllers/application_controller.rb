@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_blog
 
   def login?
-    session[:dropbox].present?
+    current_blog.present? || session[:dropbox].present?
   end
   helper_method :login?
 
