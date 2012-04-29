@@ -18,3 +18,16 @@ $text_very_light_color: #ccc;
   -moz-border-radius: $r;
   border-radius: $r;
 }
+
+@mixin datetime_and_title {
+  line-height: 2;
+  @include clearfix;
+
+  .datetime, .title {
+    float: left;
+  }
+
+  .datetime {
+    margin-right: 10px;
+  }
+}

@@ -27,12 +27,13 @@
     p
       = image_tag("about.jpg")
 
-h1
-  i.icon-refresh
-ul.blogs
-  - @blogs.each do |blog|
-    li.blog
-      .datetime
-        = pretty_date(blog.synced_at)
-      .title
-        = link_to blog.title, blog
+section
+  h1
+    i.icon-refresh
+  ul.blogs
+    - @blogs.each do |blog|
+      li.blog
+        .datetime
+          = pretty_date(blog.synced_at)
+        .title
+          = link_to blog.title, blog

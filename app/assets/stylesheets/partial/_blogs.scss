@@ -39,18 +39,8 @@
       line-height: 1;
     }
 
-    .blogs {
-      .blog {
-        @include clearfix;
-
-        .datetime, .title {
-          float: left;
-        }
-
-        .datetime {
-          margin-right: 10px;
-        }
-      }
+    .blog {
+      @include datetime_and_title;
     }
   }
 }

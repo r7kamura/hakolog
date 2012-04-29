@@ -15,14 +15,7 @@
   .entry {
     line-height: 2;
     @include clearfix;
-
-    .datetime, .title {
-      float: left;
-    }
-
-    .datetime {
-      margin-right: 10px;
-    }
+    @include datetime_and_title;
   }
 }
 
