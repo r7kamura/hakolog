@@ -14,7 +14,7 @@ class EntriesController < ApplicationController
   end
 
   def search
-    @entries = current_blog.entries.search(params[:query]).page(params[:page])
+    @entries = @blog.entries.search(params[:query]).page(params[:page])
     render :action => :index
   end
 
