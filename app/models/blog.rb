@@ -10,6 +10,8 @@ class Blog < ActiveRecord::Base
 
   paginates_per 10
 
+  after_create :create_default_files
+
   def title
     super || username
   end
@@ -33,6 +35,14 @@ class Blog < ActiveRecord::Base
     self.save
 
     sync_with_dropbox if response[:has_more]
+  end
+
+  def create_default_files
+    post(
+      Entry::BASE_PATH + "README.md",
+      Rails.root.join("README.md").read,
+      true
+    )
   end
 
   private
@@ -59,5 +69,14 @@ class Blog < ActiveRecord::Base
   # get delta metadata using Dropbox delta API
   def get_delta
     client.delta(self.version)
+  end
+
+  def post(path, body, overwrite = false)
+    temp = Tempfile.new("")
+    temp.write(body)
+    temp.close
+    open(temp.path) { |file|
+      client.put_file(path, file, overwrite)
+    }
   end
 end
