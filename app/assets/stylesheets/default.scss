@@ -43,7 +43,6 @@ body {
 
 header {
   margin-bottom: 40px;
-  line-height: 100px;
   @include clearfix;
 
   a {
@@ -53,6 +52,7 @@ header {
   h1 {
     float: left;
     margin: 0;
+    line-height: 100px;
     font-size: 50px;
   }
 
@@ -68,6 +68,7 @@ header {
         float: left;
         padding: 0 10px;
         list-style-type: none;
+        line-height: 100px;
 
         &:last-child {
           padding-right: 0;
