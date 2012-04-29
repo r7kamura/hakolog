@@ -7,6 +7,7 @@ module ApplicationHelper
     :logout => 8998,
     :hot    => 9832,
     :clock  => 8986,
+    :check  => 10004,
   }
 
   def unicode(name)

@@ -28,6 +28,12 @@ section {
   margin-bottom: 40px;
 }
 
+/* 1% is for border space */
+input[type=text],
+textarea {
+  width: 99%;
+}
+
 html {
   background: snow;
 }
@@ -96,7 +102,7 @@ footer {
   }
 }
 
-.pagination {
+.paginate {
   margin: 0 auto;
   text-align: center;
   font-size: 50px;
