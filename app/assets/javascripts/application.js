@@ -41,11 +41,19 @@ var Hakolog = {
   })(),
 
   focusFirstInput: function() {
-    $('form input[type=text]:first-child').focus();
+    $('form input[type=text]').focus();
   }
 };
 
 Hakolog.register('blogs_index', function() {
+  this.focusFirstInput();
+});
+
+Hakolog.register('entries_index', function() {
+  this.focusFirstInput();
+});
+
+Hakolog.register('entries_search', function() {
   this.focusFirstInput();
 });
 
