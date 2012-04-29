@@ -10,4 +10,5 @@ article
   .body
     = @entry.parsed_body
 
-= render :partial => "edit_entry_form", :locals => {:entry => @entry}
+- if @blog == current_blog
+  = render :partial => "edit_entry_form", :locals => {:entry => @entry}
