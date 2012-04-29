@@ -76,7 +76,7 @@ body {
 }
 
 header {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   @include clearfix;
 
   a {
@@ -120,6 +120,10 @@ header {
   }
 }
 
+#about {
+  background-image: url("../images/about.jpg");
+}
+
 footer {
   margin: 50px 0;
   font-size: 50px;
@@ -152,6 +156,14 @@ form.well {
       padding: 0;
       line-height: 1;
     }
+  }
+
+  .hero-unit h1 {
+    margin-top:10px;
+  }
+
+  .hero-unit p {
+    line-height: 1.7;
   }
 
   .blogs {
