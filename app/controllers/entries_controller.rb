@@ -5,9 +5,9 @@ class EntriesController < ApplicationController
 
   def index
     @entry_count = Entry.count(:conditions => {:blog_id => @blog.id})
-    @entries = params[:rand] ?
-      @blog.entries.page(params[:page]) :
-      @blog.random_entries.page(params[:page])
+    @entries = params[:random] ?
+      @blog.random_entries.page(params[:page]) :
+      @blog.entries.page(params[:page])
   end
 
   def show
