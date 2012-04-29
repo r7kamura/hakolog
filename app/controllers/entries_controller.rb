@@ -23,7 +23,7 @@ class EntriesController < ApplicationController
       post(entry)
       @blog.synced_at = Time.now
       @blog.save
-      redirect_to @blog
+      redirect_to [current_blog, entry]
     else
       redirect_to request.referer
     end
@@ -44,7 +44,7 @@ class EntriesController < ApplicationController
         post(entry, true)
       end
     end
-    redirect_to request.referer
+    redirect_to [current_blog, entry]
   end
 
   private
