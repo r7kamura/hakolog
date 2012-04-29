@@ -11,15 +11,15 @@
 
 - else
   .hero-unit
-    h1
-      = "Hakolog"
-    p
-      = "Dropboxにドキュメントを入れるだけで"
-      = "ブログを更新できるサービスです"
+    h2
+      = "あらゆるブログとかに対する"
+      br
+      = "最高のソリューション"
 
-    = link_to login_blogs_path, :class => "btn btn-info" do
-      i.icon-signin
-      = "Login with Dropbox"
+    p.button_container
+      = link_to login_blogs_path, :class => "btn btn-info" do
+        i.icon-signin
+        = "Login with Dropbox"
     p
       = link_to image_tag("about.jpg")
 
