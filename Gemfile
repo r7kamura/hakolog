@@ -40,4 +40,5 @@ group :production do
   # for Heroku
   gem "pg"
   gem "thin"
+  gem "therubyracer"
 end
