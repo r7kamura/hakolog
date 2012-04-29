@@ -1,14 +1,8 @@
-/*
- *= require_self
- *= require_tree ./external
- *= require "font-awesome"
- *= require_tree .
- *= depend_on "_common"
-*/
-
-/*
- * For Developer
- *   application.scss : to require
- *   common.scss      : common mixin and variables
- *   external         : external css (like twitter-bootstrap)
-*/
+@import "common";
+@import "external/bootstrap";
+@import "external/normalize";
+@import "external/tipsy/tipsy";
+@import "external/tipsy/tipsy_ext";
+@import "global";
+@import "partial/blogs";
+@import "partial/entries";
