@@ -7,3 +7,9 @@
     visibility: hidden;
   }
 }
+
+@mixin border_radius($r) {
+  -webkit-border-radius: $r;
+  -moz-border-radius: $r;
+  border-radius: $r;
+}

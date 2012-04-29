@@ -63,7 +63,7 @@ textarea {
 }
 
 html {
-  background: url("/assets/bg.png");
+  background: url("bg.png");
 }
 
 body {
@@ -73,6 +73,7 @@ body {
   line-height: 1.7;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
   color: $text_color;
+  text-shadow: 0 1px 0 white;
 }
 
 header {
@@ -206,6 +207,7 @@ form.well {
 
 #entries_show {
   article {
+
     h1 {
       margin: 0;
       line-height: 1.2;
