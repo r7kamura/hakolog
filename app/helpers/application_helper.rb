@@ -26,4 +26,10 @@ module ApplicationHelper
   def pretty_datetime(datetime)
     (datetime || DateTime.new(0)).strftime("%Y-%m-%d %H:%M")
   end
+
+  def title_in_situation
+    title = "Hakolog"
+    title = "#{@blog.username}'s #{title}" if @blog.try(:username)
+    title = "#{@title} - #{title}" if @title
+  end
 end
