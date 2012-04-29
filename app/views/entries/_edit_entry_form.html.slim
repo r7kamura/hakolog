@@ -1,11 +1,9 @@
-section
+= form_tag [current_blog, entry], :method => :put, :class => "well edit_entry_form" do
+  p
+    = text_field_tag :title, entry.title, :placeholder =>"#{unicode(:edit)} title".html_safe
 
-  = form_tag [current_blog, entry], :method => :put, :id => :create_entry_form, :class => "form-horizontal well" do
-    p
-      = text_field_tag :title, entry.title, :placeholder =>"#{unicode(:edit)} title".html_safe
+  p
+    = text_area_tag :body, entry.body, :rows => 7, :placeholder => "#{unicode(:edit)} body".html_safe
 
-    p
-      = text_area_tag :body, entry.body, :rows => 7, :placeholder => "#{unicode(:edit)} body".html_safe
-
-    = button_tag :class => "btn" do
-      i.icon-ok
+  = button_tag :class => "btn btn-info" do
+    i.icon-ok
