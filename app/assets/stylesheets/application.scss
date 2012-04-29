@@ -2,13 +2,12 @@
  *= require_self
  *= require_tree ./external
  *= require "font-awesome"
- *= require "common"
  *= require_tree .
 */
 
 /*
  * For Developer
  *   application.scss : to require
- *   default.scss     : main css
+ *   common.scss      : common mixin and variables
  *   external         : external css (like twitter-bootstrap)
 */
