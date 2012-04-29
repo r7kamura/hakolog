@@ -5,9 +5,11 @@
       = @entry_count
 
 ul.entries
-  - @blog.entries.each do |entry|
+  - @entries.each do |entry|
     li.entry
       .datetime
         = pretty_date(entry.modified_at)
       .title
         = link_to entry.title, [@blog, entry]
+
+= paginate @entries

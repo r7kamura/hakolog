@@ -9,6 +9,7 @@ gem "settingslogic"
 gem "redcarpet", ">= 2.1.0"
 gem "dropbox_sdk", ">= 0.0.2", :git => "git://github.com/r7kamura/dropbox_sdk.git"
 gem "font-awesome-rails"
+gem "kaminari"
 
 group :assets do
   gem "sass-rails",   "~> 3.2.3"

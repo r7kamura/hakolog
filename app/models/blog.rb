@@ -7,6 +7,8 @@ class Blog < ActiveRecord::Base
     validates attr, :uniqueness => true, :presence => true
   end
 
+  paginates_per 10
+
   def title
     super || username
   end

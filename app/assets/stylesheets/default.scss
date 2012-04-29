@@ -91,6 +91,16 @@ footer {
   }
 }
 
+.pagination {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 50px;
+
+  a, span {
+    padding: 0 10px;
+  }
+}
+
 #blogs_index {
   section {
     h1 {

@@ -3,6 +3,8 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
+  paginates_per 1
+
   DEFAULT_EXT = ".md"
   BASE_PATH = "/entries/"
   MARKDOWN_OPTION = {

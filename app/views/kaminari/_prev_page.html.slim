@@ -1,0 +1,4 @@
+span.prev
+  - tag, opts = current_page.first? ? [:span, {}] : [:a, {:href => url, :rel => 'prev', :remote => remote, "original-title" => "New entries"}]
+  = content_tag tag, opts do
+    i.icon-chevron-left

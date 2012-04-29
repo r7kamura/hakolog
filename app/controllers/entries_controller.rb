@@ -5,6 +5,7 @@ class EntriesController < ApplicationController
 
   def index
     @entry_count = Entry.count(:conditions => {:blog_id => @blog.id})
+    @entries = @blog.entries.page(params[:page])
   end
 
   def show
