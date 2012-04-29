@@ -35,6 +35,8 @@ class Blog < ActiveRecord::Base
     self.save
 
     sync_with_dropbox if response[:has_more]
+  rescue Net::HTTPUnauthorized
+    puts Net::HTTPUnauthorized + " (due to Dev mode?)"
   end
 
   def create_default_files
