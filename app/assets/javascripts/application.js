@@ -14,6 +14,42 @@
 //= require jquery_ujs
 //= require_tree .
 
+var Hakolog = {
+  dispatches: [],
+
+  register: function(pageKey, callback) {
+    this.dispatches.push({
+      pageKey: pageKey,
+      callback: callback
+    });
+  },
+
+  dispatch: function() {
+    var self = this;
+    $.each(this.dispatches, function() {
+      if (this.pageKey == self.pageKey()) {
+        this.callback.apply(self);
+      }
+    });
+  },
+
+  pageKey: (function() {
+    var pageKeyCache;
+    return function() {
+      return pageKeyCache || (pageKeyCache = $('body').attr('id'));
+    };
+  })(),
+
+  focusFirstInput: function() {
+    $('form input[type=text]:first-child').focus();
+  }
+};
+
+Hakolog.register('blogs_index', function() {
+  this.focusFirstInput();
+});
+
 $(function() {
+  Hakolog.dispatch();
   $('a[original-title]').tipsy();
 });
