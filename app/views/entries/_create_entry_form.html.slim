@@ -1,0 +1,8 @@
+section
+  h1
+    = unicode(:edit)
+
+  = form_tag blog_entries_path(:blog_id => current_blog.id), :method => :post, :id => :create_entry_form do
+    = text_field_tag :title
+    = text_area_tag :body
+    = submit_tag :OK

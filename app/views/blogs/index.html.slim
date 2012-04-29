@@ -3,6 +3,9 @@
     = text_field_tag :username, ""
     = submit_tag :OK
 
+- elsif current_blog
+  = render :partial => "entries/create_entry_form"
+
 section
   h1
     i.icon-inbox

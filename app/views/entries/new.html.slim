@@ -1,4 +1,1 @@
-= form_tag blog_entries_path, :method => :post, :id => :create_entry_form do
-  = text_field_tag :title
-  = text_area_tag :body
-  = submit_tag :OK
+= render :partial => "create_entry_form"
