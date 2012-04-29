@@ -28,14 +28,24 @@ class Entry < ActiveRecord::Base
     )
   end
 
+  def update_with_title(args)
+    # SHOULD: use validation
+    return if args[:title].blank?
+
+    self.body        = args[:body]
+    self.path        = BASE_PATH + args.delete(:title) + DEFAULT_EXT
+    self.modified_at = Time.now
+    self.save
+  end
+
   def title
     path && path.split(BASE_PATH, 2).last
     path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
   end
 
-  def body
+  def parsed_body
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
-    parser.render(super).html_safe
+    parser.render(body).html_safe
   end
 
   def can_overwrite?(modified_at)

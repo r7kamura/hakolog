@@ -14,14 +14,11 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
   end
 
-  def new
-  end
-
   def create
     if entry = Entry.create_with_title(
-        :title       => params[:title],
-        :body        => params[:body],
-        :blog_id     => @blog.id
+        :title   => params[:title],
+        :body    => params[:body],
+        :blog_id => @blog.id
       ) then
       post(entry)
       @blog.synced_at = Time.now
@@ -30,6 +27,23 @@ class EntriesController < ApplicationController
     else
       redirect_to request.referer
     end
+  end
+
+  def update
+    entry = Entry.where(
+      :blog_id => current_blog.id,
+      :id      => params[:id]
+    ).first
+    if entry
+      old_path = entry.path
+      if entry.update_with_title(
+        :title => params[:title],
+        :body  => params[:body],
+      ) && entry.path != old_path then
+        rename(old_path, entry.path)
+      end
+    end
+    redirect_to request.referer
   end
 
   private
@@ -46,5 +60,10 @@ class EntriesController < ApplicationController
     open(temp.path) { |file|
       client.put_file(entry.path, file, false)
     }
+  end
+
+  # rename file on Dropbox
+  def rename(old_path, new_path)
+    client.file_move(old_path, new_path)
   end
 end

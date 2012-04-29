@@ -8,4 +8,6 @@ article
     = pretty_datetime(@entry.modified_at)
 
   .body
-    = @entry.body
+    = @entry.parsed_body
+
+= render :partial => "edit_entry_form", :locals => {:entry => @entry}
