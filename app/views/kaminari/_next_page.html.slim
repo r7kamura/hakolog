@@ -1,5 +1,5 @@
 span.prev
-  - tag, opts = current_page.last? ? [:span, {}] : [:a, {:href => url, :rel => 'next', :remote => remote, "original-title" => "Old entries"}]
+  - tag, opts = current_page.last? ? [:span, {}] : [:a, {:href => url, :rel => 'next', :remote => remote, "original-title" => "Old Entries"}]
   = content_tag tag, opts do
     i.icon-chevron-right
 
