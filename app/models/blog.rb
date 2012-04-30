@@ -8,6 +8,8 @@ class Blog < ActiveRecord::Base
     validates attr, :uniqueness => true, :presence => true
   end
 
+  validates :username, :format => { :with => /^[a-z][a-z0-9]{1,11}$/ }
+
   paginates_per 10
 
   after_create :create_default_files
