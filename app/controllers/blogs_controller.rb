@@ -2,7 +2,6 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.order("synced_at DESC").page(params[:page]).
       includes(:entries)
-    require "pry"; binding.pry
   end
 
   def show
