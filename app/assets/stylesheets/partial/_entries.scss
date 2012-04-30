@@ -29,7 +29,6 @@
 
 #entries_show {
   article {
-
     h1 {
       margin: 0;
       line-height: 1.2;
@@ -51,5 +50,9 @@
       list-style-type: disc;
       padding-left: 1.5em;
     }
+  }
+
+  form {
+    margin-top: 40px;
   }
 }
