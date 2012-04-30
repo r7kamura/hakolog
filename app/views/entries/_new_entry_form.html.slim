@@ -1,4 +1,4 @@
-= form_tag blog_entries_path(:blog_id => current_blog.id), :method => :post do
+= form_tag blog_entries_path(:blog_id => current_blog.id), :method => :post, :class => :form_edit_entry do
   p
     = text_field_tag :title, "", :placeholder =>"#{unicode(:edit)} title".html_safe
 
