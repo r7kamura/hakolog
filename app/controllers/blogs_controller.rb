@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   def index
-    @blogs = Blog.order("synced_at DESC").page(params[:page])
+    @blogs = Blog.order("synced_at DESC").page(params[:page]).
+      includes(:entries)
   end
 
   def show

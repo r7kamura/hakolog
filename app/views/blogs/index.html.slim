@@ -34,6 +34,6 @@ section
     - @blogs.each do |blog|
       li.blog
         .datetime
-          = pretty_date(blog.synced_at)
+          = pretty_date(blog.entries.first.try(:modified_at))
         .title
           = link_to blog.title, blog
