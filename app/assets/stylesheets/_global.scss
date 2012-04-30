@@ -31,6 +31,11 @@ ul, ol {
   list-style-type: none;
 }
 
+table {
+  width: 100%;
+  line-height: 2;
+}
+
 /* 1% is for border space */
 input[type=text],
 textarea {
@@ -44,7 +49,7 @@ html {
 body {
   max-width: 880px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px 100px;
   line-height: 1.7;
   font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
   color: $text_color;

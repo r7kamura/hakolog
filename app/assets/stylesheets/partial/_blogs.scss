@@ -33,14 +33,16 @@
   section {
     margin-top: 100px;
 
-    h1 {
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-    }
+    .blogs {
+      text-align: left;
 
-    .blog {
-      @include datetime_and_title;
+      .date {
+        width: 100px;
+      }
+
+      .username {
+        width: 150px;
+      }
     }
   }
 }

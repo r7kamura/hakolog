@@ -28,12 +28,21 @@
       = image_tag("about.jpg")
 
 section
-  h1
-    i.icon-refresh
-  ul.blogs
+  table.blogs
+    thead
+      tr
+        th.date
+          i.icon-time
+        th.username
+          i.icon-user
+        th.entry-title
+          i.icon-file
     - @blogs.each do |blog|
-      li.blog
-        .datetime
-          = pretty_date(blog.entries.first.try(:modified_at))
-        .title
-          = link_to blog.title, blog
+      tbody
+        tr.blog
+          td.date
+            = pretty_date(blog.entries.first.try(:modified_at))
+          td.username
+            = link_to blog.title, blog
+          td.entry-title
+            = link_to ("&nbsp;" + blog.entries.first.try(:title)).html_safe, [blog, blog.entries.first]

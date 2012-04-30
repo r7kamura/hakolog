@@ -3,8 +3,7 @@ article
     = @entry.title
 
   .datetime
-    span.icon
-      = unicode(:clock)
+    i.icon-time.icon
     = pretty_datetime(@entry.modified_at)
 
   .body
