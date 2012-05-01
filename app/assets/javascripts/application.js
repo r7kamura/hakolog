@@ -46,27 +46,26 @@ var Hakolog = {
 
   bindAutoPreview: function() {
     var timeoutID;
-    var duraion       = 1 * 1000;
-    var form          = $('#entry-form');
+    var duraition     = 1 * 1000;
+    var form          = $('#form-preview');
     var preview       = $('#preview');
-    var body          = $('#body')
-    var beforeBody    = body.val();
+    var before        = form.serialize();
     var updatePreview = function() {
       $.post(
         preview.attr('data-url'),
-        { body: body.val() },
+        form.serialize(),
         function(data) {
           preview.html(data);
         }
       );
     };
 
-    body.keyup(function() {
-      var afterBody = body.val();
-      if (beforeBody == afterBody) { return }
-      beforeBody = afterBody;
+    form.find(':input').keyup(function() {
+      var after = form.serialize();
+      if (before == after) { return }
+      before = after;
       clearTimeout(timeoutID);
-      timeoutID = setTimeout(function() { updatePreview() }, duraion);
+      timeoutID = setTimeout(function() { updatePreview() }, duraition);
     });
   },
 };

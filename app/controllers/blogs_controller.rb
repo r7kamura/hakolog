@@ -43,6 +43,9 @@ class BlogsController < ApplicationController
   end
 
   def preview
-    render :text => Entry.parse(params[:body])
+    render :partial => Entry.initialize_with_title(
+      :title => params[:title],
+      :body  => params[:body]
+    )
   end
 end

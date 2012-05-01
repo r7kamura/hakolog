@@ -1,13 +1,4 @@
-article
-  h1
-    = @entry.title
-
-  .datetime
-    i.icon-time.icon
-    = pretty_datetime(@entry.modified_at)
-
-  #preview.body
-    = @entry.parsed_body
+= render :partial => @entry
 
 - if @blog == current_blog
   = render :partial => "edit_entry_form", :locals => {:entry => @entry}

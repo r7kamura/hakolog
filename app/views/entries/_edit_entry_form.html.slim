@@ -1,4 +1,4 @@
-= form_tag [current_blog, entry], :method => :put do
+= form_tag [current_blog, entry], :method => :put, :id => "form-preview" do
   p
     = text_field_tag :title, entry.title, :placeholder =>"#{unicode(:edit)} title".html_safe
 

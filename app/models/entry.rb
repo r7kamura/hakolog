@@ -27,20 +27,19 @@ class Entry < ActiveRecord::Base
     parser.render(body)
   end
 
-  def self.create_with_title(args)
-    # SHOULD: use validation
-    return if args[:title].blank?
-
-    create args.merge(
+  def self.initialize_with_title(args)
+    new args.merge(
       :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
       :modified_at => Time.now
     )
   end
 
-  def update_with_title(args)
-    # SHOULD: use validation
-    return if args[:title].blank?
+  def self.create_with_title(args)
+    obj = initialize_with_title(args)
+    obj.save
+  end
 
+  def update_with_title(args)
     self.body        = args[:body]
     self.path        = BASE_PATH + args.delete(:title) + DEFAULT_EXT
     self.modified_at = Time.now

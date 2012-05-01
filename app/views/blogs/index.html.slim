@@ -47,4 +47,4 @@ section
           td.username
             = link_to blog.title, blog
           td.entry-title
-            = link_to ("&nbsp;" + blog.entries.first.try(:title)).html_safe, [blog, blog.entries.first]
+            = link_to blog.entries.first.try(:title), [blog, blog.entries.first]

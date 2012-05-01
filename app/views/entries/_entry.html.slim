@@ -1,0 +1,10 @@
+article
+  h1
+    = entry.title
+
+  .datetime
+    i.icon-time.icon
+    = pretty_datetime(entry.modified_at)
+
+  .body
+    = entry.parsed_body
