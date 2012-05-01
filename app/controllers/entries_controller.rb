@@ -19,6 +19,10 @@ class EntriesController < ApplicationController
     render :action => :index
   end
 
+  def new
+    @entry = Entry.new
+  end
+
   def create
     if entry = Entry.create_with_title(
         :title   => params[:title],
