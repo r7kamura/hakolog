@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   def index
+    @entry = Entry.new if current_blog
     @blogs = Blog.order("synced_at DESC").page(params[:page]).
       includes(:entries)
   end
