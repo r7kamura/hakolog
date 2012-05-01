@@ -41,4 +41,8 @@ class BlogsController < ApplicationController
     session.delete(:dropbox)
     redirect_to :root
   end
+
+  def preview
+    render :text => Entry.parse(params[:body])
+  end
 end

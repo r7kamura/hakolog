@@ -1,4 +1,7 @@
 #blogs_index {
+  // for preview
+  @include entry;
+
   .hero-unit {
     text-align: center;
     background: white;

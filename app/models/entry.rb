@@ -22,6 +22,11 @@ class Entry < ActiveRecord::Base
     :no_intra_emphasis   => true,
   }
 
+  def self.parse(body)
+    parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
+    parser.render(body)
+  end
+
   def self.create_with_title(args)
     # SHOULD: use validation
     return if args[:title].blank?
@@ -48,8 +53,7 @@ class Entry < ActiveRecord::Base
   end
 
   def parsed_body
-    parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
-    parser.render(body).html_safe
+    self.class.parse(body).html_safe
   end
 
   def can_overwrite?(modified_at)

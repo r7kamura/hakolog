@@ -6,7 +6,7 @@ article
     i.icon-time.icon
     = pretty_datetime(@entry.modified_at)
 
-  .body
+  #preview.body
     = @entry.parsed_body
 
 - if @blog == current_blog

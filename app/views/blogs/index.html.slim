@@ -1,6 +1,9 @@
 - if current_blog
   = render :partial => "entries/new_entry_form"
 
+  article
+    #preview*{"data-url" => preview_blogs_path }
+
 - else
   .hero-unit
     h2
