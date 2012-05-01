@@ -8,7 +8,7 @@ class Blog < ActiveRecord::Base
     validates attr, :uniqueness => true, :presence => true
   end
 
-  validates :username, :format => { :with => /^[a-z][a-z0-9]{1,11}$/ }
+  validates :username, :format => { :with => /^[a-z0-9]{1,12}$/ }
 
   paginates_per 10
 
