@@ -47,7 +47,6 @@ class Entry < ActiveRecord::Base
   end
 
   def title
-    path && path.split(BASE_PATH, 2).last
     path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
   end
 
