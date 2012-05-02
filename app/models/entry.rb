@@ -36,7 +36,7 @@ class Entry < ActiveRecord::Base
 
   def self.create_with_title(args)
     obj = initialize_with_title(args)
-    obj.save
+    obj.save && obj
   end
 
   def update_with_title(args)
