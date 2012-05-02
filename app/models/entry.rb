@@ -3,13 +3,20 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
-  scope :search, lambda { |query|
+  scope :search, lambda {
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
-  scope :group_by_modified_on, connection.adapter_name == "Mysql2" ?
-    group("DATE(modified_at)") :
-    group("DATE(modified_at)").except(:order)
+  scope :group_by_modified_on, lambda {
+    if connection.adapter_name == "Mysql2"
+      group("DATE(modified_at)")
+    else
+      columns = column_name
+      columns.delete("modified_at")
+      columns.push("DATE(modified_at)")
+      group(columns)
+    end
+  }
 
   paginates_per 10
 
