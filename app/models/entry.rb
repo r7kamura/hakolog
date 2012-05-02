@@ -7,6 +7,8 @@ class Entry < ActiveRecord::Base
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
+  scope :group_by_modified_on, group("DATE(modified_at)")
+
   paginates_per 10
 
   DEFAULT_EXT     = ".md"
