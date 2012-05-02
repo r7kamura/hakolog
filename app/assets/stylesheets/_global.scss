@@ -144,6 +144,14 @@ footer {
   }
 }
 
-.form_edit_entry {
+.form-edit-entry {
   margin-top: 40px;
+
+  .btn {
+    margin-right: 10px;
+  }
+
+  .btn-danger {
+    padding: 4px 12px;
+  }
 }

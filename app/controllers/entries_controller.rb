@@ -56,6 +56,12 @@ class EntriesController < ApplicationController
     redirect_to [current_blog, entry]
   end
 
+  def destroy
+    entry = Entry.find(params[:id])
+    entry.destroy
+    redirect_to entry.blog
+  end
+
   private
 
   def prepare_blog

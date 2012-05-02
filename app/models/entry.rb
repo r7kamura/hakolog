@@ -22,6 +22,8 @@ class Entry < ActiveRecord::Base
     :no_intra_emphasis   => true,
   }
 
+  after_destroy :file_delete
+
   def self.parse(body)
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
     parser.render(body)
@@ -56,5 +58,9 @@ class Entry < ActiveRecord::Base
 
   def can_overwrite?(modified_at)
     self.updated_at.nil? || self.updated_at < modified_at
+  end
+
+  def file_delete
+    self.blog.client.file_delete(self.path)
   end
 end
