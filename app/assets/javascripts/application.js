@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require external/google-code-prettify/prettify
 //= require_tree .
 
 var Hakolog = {
@@ -30,6 +31,10 @@ var Hakolog = {
 
   focusFirstInput: function() {
     $('form input[type=text]').focus();
+  },
+
+  addPrettifyFlagToPre: function() {
+    $('pre').addClass('prettyprint');
   },
 
   bindAutoPreview: function() {
@@ -78,5 +83,8 @@ Hakolog.register('entries_search', function() {
 
 $(function() {
   Hakolog.dispatch();
+  Hakolog.addPrettifyFlagToPre();
+
+  prettyPrint();
   $('a[original-title]').tipsy();
 });
