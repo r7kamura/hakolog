@@ -14,7 +14,7 @@ class Entry < ActiveRecord::Base
       columns = column_names
       columns.delete("modified_at")
       columns.push("DATE(modified_at)")
-      group(columns).except(:order)
+      group(columns).reorder(:id)
     end
   }
 
