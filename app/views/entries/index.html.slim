@@ -4,7 +4,7 @@
     = @entries.total_count
   p
     i.icon-calendar
-    = @entries.pluck(:modified_at).map(&:beginning_of_day).uniq.size
+    = @blog.entry_date_count
 
 = form_tag :search_blog_entries, :method => :get, :class => "form-search" do
   = text_field_tag :query, params[:query], :placeholder => "#{unicode(:scissors)} Search".html_safe, :class => "search-query"

@@ -19,6 +19,10 @@ class Blog < ActiveRecord::Base
     super || username
   end
 
+  def entry_date_count
+    self.entries.pluck(:modified_at).map(&:beginning_of_day).uniq.size
+  end
+
   # return <#DropboxClient> activated by self.dropbox_session
   def client
     @client ||= DropboxClient.new(
