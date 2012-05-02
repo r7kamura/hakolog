@@ -30,23 +30,25 @@ class Entry < ActiveRecord::Base
     parser.render(body)
   end
 
-  def self.initialize_with_title(args)
-    new args.merge(
-      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
-      :modified_at => Time.now
-    )
-  end
-
   def self.create_with_title(args)
     obj = initialize_with_title(args)
     obj.save && obj
   end
 
+  def self.initialize_with_title(args)
+    new(
+      :body        => args[:body],
+      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
+      :modified_at => Time.now
+    )
+  end
+
   def update_with_title(args)
-    self.body        = args[:body]
-    self.path        = BASE_PATH + args.delete(:title) + DEFAULT_EXT
-    self.modified_at = Time.now
-    self.save
+    update_attributes(
+      :body        => args[:body],
+      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
+      :modified_at => Time.now
+    )
   end
 
   def title
