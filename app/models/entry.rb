@@ -7,7 +7,9 @@ class Entry < ActiveRecord::Base
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
-  scope :group_by_modified_on, group("DATE(modified_at)")
+  scope :group_by_modified_on, connectionadapter_name == "Mysql2" ?
+    group("DATE(modified_at)") :
+    group("CAST(modified_at AS DATE)")
 
   paginates_per 10
 
