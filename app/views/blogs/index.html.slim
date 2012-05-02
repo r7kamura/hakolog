@@ -1,8 +1,7 @@
 - if current_blog
   = render :partial => "entries/form_entry", :locals => {:entry => @entry}
 
-  article
-    #preview*{"data-url" => preview_blogs_path }
+  article#preview*{"data-url" => preview_blogs_path }
 
 - else
   .hero-unit
