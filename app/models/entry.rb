@@ -11,7 +11,7 @@ class Entry < ActiveRecord::Base
     if connection.adapter_name == "Mysql2"
       group("DATE(modified_at)")
     else
-      columns = column_name
+      columns = column_names
       columns.delete("modified_at")
       columns.push("DATE(modified_at)")
       group(columns)
