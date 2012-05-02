@@ -9,7 +9,7 @@ class Entry < ActiveRecord::Base
 
   scope :group_by_modified_on, connection.adapter_name == "Mysql2" ?
     group("DATE(modified_at)") :
-    group("DATE(modified_at)").order("DATE(modified_at)")
+    group("DATE(modified_at)").except(:order)
 
   paginates_per 10
 
