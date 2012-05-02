@@ -39,12 +39,12 @@ section
           i.icon-user
         th.entry-title
           i.icon-file
-    - @blogs.each do |blog|
+    - @entries.each do |entry|
       tbody
         tr.blog
           td.date
-            = pretty_date(blog.entries.first.try(:modified_at))
+            = pretty_date(entry.modified_at)
           td.username
-            = link_to blog.title, blog
+            = link_to entry.blog.title, entry.blog
           td.entry-title
-            = link_to blog.entries.first.try(:title), [blog, blog.entries.first]
+            = link_to entry.title, [entry.blog, entry]

@@ -1,8 +1,7 @@
 class BlogsController < ApplicationController
   def index
-    @entry = Entry.new if current_blog
-    @blogs = Blog.order("synced_at DESC").page(params[:page]).
-      includes(:entries)
+    @entry   = Entry.new if current_blog
+    @entries = Entry.distinct(:blog_id).order("modified_at DESC").page(params[:page])include(:blog)
   end
 
   def show
