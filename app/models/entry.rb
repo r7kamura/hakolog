@@ -7,17 +7,6 @@ class Entry < ActiveRecord::Base
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
-  scope :group_by_modified_on, lambda {
-    if connection.adapter_name == "Mysql2"
-      group("DATE(modified_at)")
-    else
-      columns = column_names
-      columns.delete("modified_at")
-      columns.push("DATE(modified_at)")
-      group(columns).reorder(:id)
-    end
-  }
-
   paginates_per 10
 
   DEFAULT_EXT     = ".md"
