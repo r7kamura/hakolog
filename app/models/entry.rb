@@ -37,6 +37,7 @@ class Entry < ActiveRecord::Base
 
   def self.initialize_with_title(args)
     new(
+      :blog_id     => args[:blog_id],
       :body        => args[:body],
       :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
       :modified_at => Time.now
@@ -45,6 +46,7 @@ class Entry < ActiveRecord::Base
 
   def update_with_title(args)
     update_attributes(
+      :blog_id     => args[:blog_id],
       :body        => args[:body],
       :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
       :modified_at => Time.now
