@@ -43,7 +43,7 @@ var Hakolog = {
         preview.attr('data-url'),
         form.serialize(),
         function(data) {
-          preview.html(data);
+          preview.hide().html(data).fadeIn();
         }
       );
     };
