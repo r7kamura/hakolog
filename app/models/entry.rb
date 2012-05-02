@@ -62,5 +62,7 @@ class Entry < ActiveRecord::Base
 
   def file_delete
     self.blog.client.file_delete(self.path)
+  rescue DropboxError
+    puts "Entry#file_delete: #{self.path} does not exist."
   end
 end
