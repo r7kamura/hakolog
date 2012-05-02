@@ -7,7 +7,9 @@
     = @blog.entry_date_count
 
 = form_tag :search_blog_entries, :method => :get, :class => "form-search" do
-  = text_field_tag :query, params[:query], :placeholder => "#{unicode(:scissors)} Search".html_safe, :class => "search-query"
+  = text_field_tag :query, params[:query], \
+    :placeholder => "#{unicode(:scissors)} Search".html_safe, \
+    :class => "search-query"
 
 ul.entries
   - @entries.each do |entry|
