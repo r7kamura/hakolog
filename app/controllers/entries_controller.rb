@@ -25,10 +25,10 @@ class EntriesController < ApplicationController
 
   def create
     if entry = Entry.create_with_title(
-        :title   => params[:title],
-        :body    => params[:body],
-        :blog_id => @blog.id
-      ) then
+      :title   => params[:entry][:title],
+      :body    => params[:entry][:body],
+      :blog_id => @blog.id
+    ) then
       post(entry)
       @blog.synced_at = Time.now
       @blog.save
