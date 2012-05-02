@@ -22,6 +22,7 @@ class Entry < ActiveRecord::Base
     :no_intra_emphasis   => true,
   }
 
+  before_save :downcase_path
   after_destroy :file_delete
 
   def self.parse(body)
@@ -64,5 +65,9 @@ class Entry < ActiveRecord::Base
     self.blog.client.file_delete(self.path)
   rescue DropboxError
     puts "Entry#file_delete: #{self.path} does not exist."
+  end
+
+  def downcase_path
+    self.path = self.path.downcase
   end
 end
