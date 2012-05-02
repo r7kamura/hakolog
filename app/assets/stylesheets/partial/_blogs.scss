@@ -1,7 +1,4 @@
 #blogs_index {
-  // for preview
-  @include entry;
-
   .hero-unit {
     text-align: center;
     background: white;
@@ -34,8 +31,6 @@
   }
 
   section {
-    margin-top: 100px;
-
     .blogs {
       text-align: left;
 

@@ -1,9 +1,4 @@
-- if current_blog
-  = render :partial => "entries/form_entry", :locals => {:entry => @entry}
-
-  article#preview*{"data-url" => preview_blogs_path }
-
-- else
+- unless current_blog
   .hero-unit
     h2
       | あらゆるブログとかに対する
