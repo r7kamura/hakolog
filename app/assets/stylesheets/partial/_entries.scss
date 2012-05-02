@@ -1,12 +1,16 @@
 @mixin entry_index {
   .stats {
-    .entry_count {
-      font-size: 30px;
-      font-weight: bold;
-      color: $text_very_light_color;
+    font-weight: bold;
+    color: $text_light_color;
+    @include clearfix;
 
-      .icon {
-        margin-right: 3px;
+    p {
+      float: left;
+      margin-right: 1em;
+      font-size: 20px;
+
+      i {
+        margin-right: 5px;
         font-size: 50px;
       }
     }

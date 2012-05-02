@@ -31,7 +31,7 @@ html
               i.icon-pencil
 
           - if login?
-            li= link_to logout_blogs_path(current_blog), "original-title" => "Logout" do
+            li= link_to logout_blogs_path(current_blog), "original-title" => "Logout", :confirm => "Logout?" do
               i.icon-signout
           - else
             li= link_to login_blogs_path, "original-title" => "Login" do

@@ -1,8 +1,10 @@
 .stats
-  .entry_count
-    i.icon-file.icon
-    span.value
-      = @entries.total_count
+  p
+    i.icon-file
+    = @entries.total_count
+  p
+    i.icon-calendar
+    = 2
 
 = form_tag :search_blog_entries, :method => :get, :class => "form-search" do
   = text_field_tag :query, params[:query], :placeholder => "#{unicode(:scissors)} Search".html_safe, :class => "search-query"
