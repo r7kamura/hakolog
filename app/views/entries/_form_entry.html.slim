@@ -1,15 +1,19 @@
-= form_for [current_blog, entry], :html => { :class => "form-edit-entry", :id => "form-preview" } do |f|
+= form_for [current_blog, entry], \
+  :html => { :class => "form-edit-entry", :id => "form-preview" } do |f|
+
   p
     = f.text_field :title, :placeholder =>"#{unicode(:edit)} title".html_safe
 
   p
-    = f.text_area :body, :rows => 7, :placeholder => "#{unicode(:edit)} body".html_safe
+    = f.text_area :body, :rows => 7, \
+      :placeholder => "#{unicode(:edit)} body".html_safe
 
   = button_tag :class => "btn btn-info", :type => "submit" do
     i.icon-ok
 
   - if entry.persisted?
-    = link_to [current_blog, entry], :data => { :method => :delete }, :confirm => "OK?", :class => "btn btn-danger" do
+    = link_to [current_blog, entry], :data => { :method => :delete }, \
+      :confirm => "OK?", :class => "btn btn-danger" do
       i.icon-trash
 
 - unless entry.persisted?
