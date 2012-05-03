@@ -8,12 +8,11 @@ class Blog < ActiveRecord::Base
   %w[username dropbox_session dropbox_id].each do |attr|
     validates attr, :uniqueness => true, :presence => true
   end
-
   validates :username, :format => { :with => /^[a-z0-9]{1,12}$/ }
 
-  paginates_per 10
-
   after_create :create_default_files
+
+  paginates_per 10
 
   def title
     super || username
