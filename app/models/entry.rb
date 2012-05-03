@@ -24,7 +24,7 @@ class Entry < ActiveRecord::Base
 
   before_save :downcase_path
   before_save :add_modified_at
-  before_update :update_blog_edited_at
+  before_update :update_blog_modified_at
   after_destroy :file_delete
 
   def self.parse(body)
@@ -78,7 +78,7 @@ class Entry < ActiveRecord::Base
     self.modified_at = Time.now
   end
 
-  def update_blog_edited_at
-    self.blog.update_attributes(:edited_at => Time.now)
+  def update_blog_modified_at
+    self.blog.update_attributes(:modified_at => Time.now)
   end
 end
