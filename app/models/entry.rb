@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 
   belongs_to :blog
 
-  scope :search, lambda {
+  scope :search, lambda { |query|
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
