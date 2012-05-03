@@ -15,8 +15,9 @@ class EntriesController < ApplicationController
   end
 
   def search
-    @entries = @blog.entries.search(params[:query]).page(params[:page])
-    render :action => :index
+    entries = @blog.entries.search(params[:query])
+    render :partial => "entries/entries",
+      :locals => { :entries => entries }
   end
 
   def new

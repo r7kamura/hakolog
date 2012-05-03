@@ -6,7 +6,8 @@
     i.icon-bar-chart
     = @blog.entry_date_count
 
-= form_tag :search_blog_entries, :method => :get, :class => "form-search" do
+= form_tag :search_blog_entries, :method => :get, :class => "form-search", :remote => true do
+  = hidden_field_tag :page, params[:pqge]
   = text_field_tag :query, params[:query], \
     :placeholder => "#{unicode(:scissors)} Search".html_safe, \
     :class => "search-query"

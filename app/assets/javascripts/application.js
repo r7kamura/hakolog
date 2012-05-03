@@ -61,6 +61,14 @@ var Hakolog = {
       timeoutID = setTimeout(function() { updatePreview() }, duraition);
     });
   },
+
+  bindIncrementalSearch: function() {
+    $('.form-search').keyup(function() {
+      $(this).submit();
+    }).on('ajax:success', function(event, data) {
+      $('.entries').html(data);
+    });
+  }
 };
 
 Hakolog.register('blogs_index', function() {
@@ -70,10 +78,7 @@ Hakolog.register('blogs_index', function() {
 
 Hakolog.register('entries_index', function() {
   this.focusFirstInput();
-});
-
-Hakolog.register('entries_search', function() {
-  this.focusFirstInput();
+  this.bindIncrementalSearch();
 });
 
 Hakolog.register('entries_new', function() {
