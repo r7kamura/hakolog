@@ -16,7 +16,7 @@ describe "Blogs" do
     it_should_behave_like "an existing page"
 
     context "before authentication" do
-      it { should have_selector("a.login") }
+      it { should have_selector("a[original-title='Login']") }
     end
 
     context "after authentication without blog" do
@@ -36,7 +36,10 @@ describe "Blogs" do
   end
 
   describe "GET /blogs/:id" do
-    before { visit url_for(blog) }
+    before {
+      pending "authentication"
+      visit url_for(blog)
+    }
 
     it_should_behave_like "an existing page"
 
@@ -66,6 +69,7 @@ describe "Blogs" do
 
   describe "GET /blogs/:id/entries/new" do
     before do
+      pending "authentication"
       visit url_for(new_blog_entry_path(blog))
     end
 
@@ -82,6 +86,7 @@ describe "Blogs" do
 
   describe "GET /blogs/:blog_id/entries/:entry_id" do
     before do
+      pending "authentication"
       @entry = FactoryGirl.create(:entry, :blog_id => blog.id)
       visit url_for(blog_entry_path(blog, @entry))
     end
