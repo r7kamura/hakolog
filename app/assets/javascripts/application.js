@@ -72,13 +72,13 @@ Hakolog.register('entries_index', function() {
   this.focusFirstInput();
 });
 
+Hakolog.register('entries_search', function() {
+  this.focusFirstInput();
+});
+
 Hakolog.register('entries_new', function() {
   this.focusFirstInput();
   this.bindAutoPreview();
-});
-
-Hakolog.register('entries_search', function() {
-  this.focusFirstInput();
 });
 
 $(function() {
