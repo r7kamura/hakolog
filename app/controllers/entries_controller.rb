@@ -46,8 +46,8 @@ class EntriesController < ApplicationController
     if entry
       old_path = entry.path
       if entry.update_with_title(
-        :title => params[:title],
-        :body  => params[:body],
+        :title => params[:entry][:title],
+        :body  => params[:entry][:body],
       ) then
         move(old_path, entry.path) if entry.path != old_path
         post(entry, true)
