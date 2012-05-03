@@ -23,6 +23,7 @@ class Entry < ActiveRecord::Base
   }
 
   before_save :downcase_path
+  before_save :add_modified_at
   after_destroy :file_delete
 
   def self.parse(body)
@@ -37,18 +38,16 @@ class Entry < ActiveRecord::Base
 
   def self.initialize_with_title(args)
     new(
-      :blog_id     => args[:blog_id],
-      :body        => args[:body],
-      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
-      :modified_at => Time.now
+      :blog_id => args[:blog_id],
+      :body    => args[:body],
+      :path    => BASE_PATH + args.delete(:title) + DEFAULT_EXT
     )
   end
 
   def update_with_title(args)
     update_attributes(
-      :body        => args[:body],
-      :path        => BASE_PATH + args.delete(:title) + DEFAULT_EXT,
-      :modified_at => Time.now
+      :body => args[:body],
+      :path => BASE_PATH + args.delete(:title) + DEFAULT_EXT
     )
   end
 
@@ -67,10 +66,14 @@ class Entry < ActiveRecord::Base
   def file_delete
     self.blog.client.file_delete(self.path)
   rescue DropboxError
-    puts "Entry#file_delete: #{self.path} does not exist."
+    puts "DropboxError in Entry#file_delete: #{self.path} does not exist."
   end
 
   def downcase_path
     self.path = self.path.downcase
+  end
+
+  def add_modified_at
+    self.modified_at = Time.now
   end
 end
