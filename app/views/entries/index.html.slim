@@ -11,12 +11,6 @@
     :placeholder => "#{unicode(:scissors)} Search".html_safe, \
     :class => "search-query"
 
-ul.entries
-  - @entries.each do |entry|
-    li.entry
-      .datetime
-        = pretty_date(entry.modified_at)
-      .title
-        = link_to entry.title, [@blog, entry]
+= render :partial => "entries", :locals => { :entries => @entries }
 
 = paginate @entries

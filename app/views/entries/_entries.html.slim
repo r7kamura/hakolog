@@ -1,0 +1,7 @@
+ul.entries
+  - entries.each do |entry|
+    li.entry
+      .datetime
+        = pretty_date(entry.modified_at)
+      .title
+        = link_to entry.title, [entry.blog, entry]
