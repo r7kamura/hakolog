@@ -4,9 +4,7 @@ class EntriesController < ApplicationController
   before_filter :prepare_blog
 
   def index
-    @entries = params[:random] ?
-      @blog.random_entries.page(params[:page]) :
-      @blog.entries.page(params[:page])
+    @entries = @blog.entries
   end
 
   def show
