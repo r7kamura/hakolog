@@ -27,11 +27,11 @@ class EntriesController < ApplicationController
     if entry = Entry.create_with_title(
       :title   => params[:entry][:title],
       :body    => params[:entry][:body],
-      :blog_id => @blog.id
+      :blog_id => current_blog.id
     ) then
       post(entry)
-      @blog.synced_at = Time.now
-      @blog.save
+      current_blog.synced_at = Time.now
+      current_blog.save
       redirect_to [current_blog, entry]
     else
       redirect_to request.referer
