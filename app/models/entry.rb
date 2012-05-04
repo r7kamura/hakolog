@@ -25,7 +25,7 @@ class Entry < ActiveRecord::Base
   before_save :downcase_path
   before_save :add_modified_at
   before_update :update_blog_modified_at
-  after_destroy :file_delete
+  before_destroy :file_delete
 
   def self.parse(body)
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
@@ -76,7 +76,9 @@ class Entry < ActiveRecord::Base
   end
 
   def file_delete
-    self.blog.client.file_delete(self.path)
+    if blog = self.blog
+      blog.client.file_delete(self.path)
+    end
   rescue DropboxError
     puts "DropboxError in Entry#file_delete: #{self.path} does not exist."
   end
