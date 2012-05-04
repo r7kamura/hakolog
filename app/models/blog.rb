@@ -54,6 +54,10 @@ class Blog < ActiveRecord::Base
     sync_with_dropbox
   end
 
+  def to_param
+    username
+  end
+
   private
 
   def sync_entry_by_delta(delta)

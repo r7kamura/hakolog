@@ -25,13 +25,13 @@ html
             i.icon-home
 
           - if current_blog
-            li= link_to current_blog, "original-title" => "You" do
+            li= link_to blog_entries_path(current_blog), "original-title" => "You" do
               i.icon-user
             li= link_to new_blog_entry_path(current_blog), "original-title" => "Write" do
               i.icon-pencil
 
           - if login?
-            li= link_to logout_path(current_blog), "original-title" => "Logout", :confirm => "Logout?" do
+            li= link_to logout_path, "original-title" => "Logout", :confirm => "Logout?" do
               i.icon-signout
           - else
             li= link_to login_path, "original-title" => "Login" do

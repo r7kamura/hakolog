@@ -17,5 +17,6 @@ Hakolog::Application.routes.draw do
     end
   end
 
-  get "/:username" => "entries#index"
+  get "/:username" => "entries#index", :as => :blog_entries
+  get "/:username/new" => "entries#new", :as => :new_blog_entry
 end
