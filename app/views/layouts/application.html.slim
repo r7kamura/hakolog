@@ -11,7 +11,7 @@ html
     header
       h1
         - if @blog
-          = link_to @blog do
+          = link_to blog_entries_path(@blog) do
             i.icon-user
             = @blog.title
         - else
