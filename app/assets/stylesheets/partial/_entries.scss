@@ -1,4 +1,48 @@
-@mixin entry_index {
+@mixin entry {
+  article {
+    h1 {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    h2 {
+      line-height: 1.7;
+
+      &:before {
+        content: "\273b";
+        padding-right: .2em;
+        color: #E66E04;
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    ul, ol {
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5em;
+    }
+
+    .datetime {
+      color: $text_light_color;
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    .body {
+      margin-top: 1em;
+    }
+  }
+}
+
+#entries_index {
   .stats {
     font-weight: bold;
     color: $text_light_color;
@@ -23,18 +67,14 @@
   }
 }
 
-#entries_index {
-  @include entry_index;
-}
-
-#entries_search {
-  @include entry_index;
-}
-
 #entries_show {
   @include entry;
 
   form {
     margin-top: 40px;
   }
+}
+
+#entries_new {
+  @include entry;
 }

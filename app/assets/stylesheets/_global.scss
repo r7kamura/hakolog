@@ -12,7 +12,10 @@ p {
   margin: 0;
 }
 
-p + p,
+p + p {
+  margin-top: 1em;
+}
+
 form p {
   margin-bottom: 1em;
 }
@@ -22,7 +25,7 @@ h1 {
 }
 
 h2, h3, h4, h5, h6 {
-  margin: 2em 0 0;
+  margin: 1.5em 0 0;
   font-weight: normal;
 }
 
@@ -40,6 +43,11 @@ table {
 input[type=text],
 textarea {
   width: 99%;
+}
+
+pre {
+  line-height: 1.5;
+  background: white;
 }
 
 article {

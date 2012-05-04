@@ -19,36 +19,6 @@ $text_very_light_color: #ccc;
   border-radius: $r;
 }
 
-@mixin entry {
-  article {
-    h1 {
-      margin: 0;
-      line-height: 1.2;
-    }
-
-    .datetime {
-      color: $text_light_color;
-
-      .icon {
-        margin-right: 5px;
-      }
-    }
-
-    img {
-      max-width: 100%;
-    }
-
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5em;
-    }
-
-    #preview {
-      margin-top: 40px;
-    }
-  }
-}
-
 // FIXME: not common
 @mixin datetime_and_title {
   line-height: 2;
