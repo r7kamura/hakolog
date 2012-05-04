@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503151212) do
+ActiveRecord::Schema.define(:version => 20120504155800) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20120503151212) do
     t.string   "dropbox_session"
     t.string   "version"
   end
+
+  add_index "blogs", ["username"], :name => "index_blogs_on_username"
 
   create_table "entries", :force => true do |t|
     t.string   "path"
