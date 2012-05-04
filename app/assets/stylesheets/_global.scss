@@ -45,8 +45,9 @@ textarea {
   width: 99%;
 }
 
-pre {
+pre, code, kbd, samp {
   line-height: 1.5;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background: white;
 }
 
