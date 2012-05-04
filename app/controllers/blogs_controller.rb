@@ -5,11 +5,6 @@ class BlogsController < ApplicationController
       page(params[:page]).per(13).includes(:blog)
   end
 
-  def show
-    @blog = Blog.find(params[:id])
-    redirect_to blog_entries_path(@blog)
-  end
-
   def create
     blog = Blog.new(
       :username        => params[:username],

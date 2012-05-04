@@ -64,7 +64,8 @@ class EntriesController < ApplicationController
   private
 
   def prepare_blog
-    @blog = Blog.find_by_id(params[:blog_id]) or redirect_to :root
+    @blog ||= Blog.find_by_username(params[:username]) or
+      redirect_to :root
   end
 
   # create file on Dropbox

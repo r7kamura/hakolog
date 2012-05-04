@@ -5,7 +5,7 @@ Hakolog::Application.routes.draw do
   get "login" => "blogs#login", :as => :login
   get "login_callback" => "blogs#login_callback", :as => :login_callback
 
-  resources :blogs do
+  resources :blogs, :except => %w[index show] do
     collection do
       post "preview"
     end
@@ -16,4 +16,6 @@ Hakolog::Application.routes.draw do
       end
     end
   end
+
+  get "/:username" => "entries#index"
 end
