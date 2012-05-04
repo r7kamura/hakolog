@@ -1,0 +1,52 @@
+// about header & footer
+
+header {
+  margin-bottom: 20px;
+  @include clearfix;
+
+  a {
+    color: $text_color;
+  }
+
+  h1 {
+    float: left;
+    margin: 0;
+    line-height: 100px;
+    font-size: 50px;
+    font-weight: bold;
+
+    img {
+      margin-bottom: -10px;
+      padding-right: 10px;
+    }
+
+    i {
+      padding-right: 10px;
+    }
+  }
+
+  nav {
+    float: right;
+    font-size: 40px;
+    @include clearfix;
+
+    ul {
+      margin: 0;
+
+      li {
+        float: left;
+        padding: 0 10px;
+        list-style-type: none;
+        line-height: 100px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        a:hover {
+          color: $link_color;
+        }
+      }
+    }
+  }
+}
