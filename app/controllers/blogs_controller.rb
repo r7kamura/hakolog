@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
   def login
     ds = DropboxSession.new(Setting.consumer_key, Setting.consumer_secret)
     session[:dropbox] = ds.serialize
-    abs_url = url_for(:login_callback_blogs)
+    abs_url = url_for(:login_callback)
     redirect_to ds.get_authorize_url(abs_url)
   rescue NoMethodError
     redirect_to :root

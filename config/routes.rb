@@ -1,11 +1,12 @@
 Hakolog::Application.routes.draw do
   root :to => "blogs#index"
 
+  get "logout" => "blogs#logout", :as => :logout
+  get "login" => "blogs#login", :as => :login
+  get "login_callback" => "blogs#login_callback", :as => :login_callback
+
   resources :blogs do
     collection do
-      get "login"
-      get "login_callback"
-      get "logout"
       post "preview"
     end
 
