@@ -4,4 +4,4 @@ ul.entries
       .datetime
         = pretty_date(entry.modified_at)
       .title
-        = link_to entry.title, [entry.blog, entry]
+        = link_to entry.title, blog_entry_path(entry.blog, entry)

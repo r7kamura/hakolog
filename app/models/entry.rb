@@ -32,6 +32,10 @@ class Entry < ActiveRecord::Base
     parser.render(body)
   end
 
+  def self.find_by_title(title)
+    find_by_path(fullpath(title))
+  end
+
   def self.create_with_title(args)
     obj = initialize_with_title(args)
     obj.save && obj
@@ -41,14 +45,14 @@ class Entry < ActiveRecord::Base
     new(
       :blog_id => args[:blog_id],
       :body    => args[:body],
-      :path    => BASE_PATH + args.delete(:title) + DEFAULT_EXT
+      :path    => fullpath(args.delete(:title))
     )
   end
 
   def update_with_title(args)
     update_attributes(
       :body => args[:body],
-      :path => BASE_PATH + args.delete(:title) + DEFAULT_EXT
+      :path => self.class.fullpath(args.delete(:title))
     )
   end
 
@@ -80,5 +84,15 @@ class Entry < ActiveRecord::Base
 
   def update_blog_modified_at
     self.blog.update_attributes(:modified_at => Time.now)
+  end
+
+  def to_param
+    title
+  end
+
+  private
+
+  def self.fullpath(title)
+    BASE_PATH + title + DEFAULT_EXT
   end
 end

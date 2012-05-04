@@ -2,13 +2,13 @@ require "tempfile"
 
 class EntriesController < ApplicationController
   before_filter :prepare_blog
+  before_filter :prepare_entry, :only => %w[show update destroy]
 
   def index
     @entries = @blog.entries
   end
 
   def show
-    @entry = Entry.find(params[:id])
     @title = @entry.title
   end
 
@@ -38,27 +38,22 @@ class EntriesController < ApplicationController
   end
 
   def update
-    entry = Entry.where(
-      :blog_id => current_blog.id,
-      :id      => params[:id]
-    ).first
-    if entry
-      old_path = entry.path
-      if entry.update_with_title(
+    if @entry && @entry.blog_id == current_blog.id
+      old_path = @entry.path
+      if @entry.update_with_title(
         :title => params[:entry][:title],
         :body  => params[:entry][:body],
       ) then
-        move(old_path, entry.path) if entry.path != old_path
-        post(entry, true)
+        move(old_path, @entry.path) if @entry.path != old_path
+        post(@entry, true)
       end
     end
-    redirect_to [current_blog, entry]
+    redirect_to [current_blog, @entry]
   end
 
   def destroy
-    entry = Entry.find(params[:id])
-    entry.destroy
-    redirect_to entry.blog
+    @entry.destroy
+    redirect_to @entry.blog
   end
 
   private
@@ -66,6 +61,11 @@ class EntriesController < ApplicationController
   def prepare_blog
     @blog ||= Blog.find_by_username(params[:username]) or
       redirect_to :root
+  end
+
+  def prepare_entry
+    @entry ||= Entry.find_by_title(params[:title]) or
+      redirect_to blog_entries_path(@blog)
   end
 
   # create file on Dropbox

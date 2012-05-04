@@ -10,7 +10,7 @@ Hakolog::Application.routes.draw do
       post "preview"
     end
 
-    resources :entries do
+    resources :entries, :except => %w[index show create update] do
       collection do
         get "search"
       end
@@ -18,5 +18,9 @@ Hakolog::Application.routes.draw do
   end
 
   get "/:username" => "entries#index", :as => :blog_entries
+  post "/:username" => "entries#create", :as => :blog_entry
   get "/:username/new" => "entries#new", :as => :new_blog_entry
+  get "/:username/:title" => "entries#show", :as => :blog_entry
+  put "/:username/:title" => "entries#update", :as => :blog_entry
+  delete "/:username/:title" => "entries#destroy", :as => :blog_entry
 end
