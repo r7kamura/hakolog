@@ -3,6 +3,7 @@ require "tempfile"
 class EntriesController < ApplicationController
   before_filter :prepare_blog
   before_filter :prepare_entry, :only => %w[show update destroy]
+  before_filter :check_author, :only => %w[update destroy]
 
   def index
     @entries = @blog.entries
@@ -66,6 +67,11 @@ class EntriesController < ApplicationController
   def prepare_entry
     @entry ||= Entry.find_by_title(params[:title]) or
       redirect_to blog_entries_path(@blog)
+  end
+
+  def check_author
+    @entry.blog == current_blog or
+      redirect_to blog_entries_path(current_blog)
   end
 
   # create file on Dropbox
