@@ -33,10 +33,6 @@ var Hakolog = {
     $('form input[type=text]').focus();
   },
 
-  addPrettifyFlagToPre: function() {
-    $('pre').addClass('prettyprint');
-  },
-
   bindAutoPreview: function() {
     var timeoutID;
     var duraition     = 1 * 1000;
@@ -68,6 +64,11 @@ var Hakolog = {
     }).on('ajax:success', function(event, data) {
       $('.entries').html(data);
     });
+  },
+
+  prettifyCode: function() {
+    $('pre').addClass('prettyprint');
+    prettyPrint();
   }
 };
 
@@ -86,10 +87,11 @@ Hakolog.register('entries_new', function() {
   this.bindAutoPreview();
 });
 
+Hakolog.register('entries_show', function() {
+  this.prettifyCode();
+});
+
 $(function() {
   Hakolog.dispatch();
-  Hakolog.addPrettifyFlagToPre();
-
-  prettyPrint();
   $('a[original-title]').tipsy();
 });
