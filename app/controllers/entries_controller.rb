@@ -65,10 +65,8 @@ class EntriesController < ApplicationController
   end
 
   def prepare_entry
-    @entry ||= begin
-      entry = Entry.find_by_title(params[:title])
-      (entry.blog.username == params[:username]) && entry
-    end or redirect_to blog_entries_path(@blog)
+    @entry ||= Entry.find_by_blog_id_and_title(@blog.id, params[:title]) or
+      redirect_to blog_entries_path(@blog)
   end
 
   def check_author

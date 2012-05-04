@@ -36,6 +36,13 @@ class Entry < ActiveRecord::Base
     find_by_path(fullpath(title))
   end
 
+  def self.find_by_blog_id_and_title(blog_id, title)
+    where(
+      :blog_id => blog_id,
+      :path    => fullpath(title)
+    ).first
+  end
+
   def self.create_with_title(args)
     obj = initialize_with_title(args)
     obj.save && obj
