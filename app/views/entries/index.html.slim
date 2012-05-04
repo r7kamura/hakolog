@@ -7,7 +7,7 @@
     = @blog.entry_date_count
 
 = form_tag search_blog_entries_path(@blog), :method => :get, :class => "form-search", :remote => true do
-  = hidden_field_tag :page, params[:pqge]
+  = hidden_field_tag :page, params[:page]
   = text_field_tag :query, params[:query], \
     :placeholder => "#{unicode(:scissors)} Search".html_safe, \
     :class => "search-query"
