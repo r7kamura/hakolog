@@ -1,34 +1,17 @@
 @mixin entry {
   article {
-    h1 {
+    header {
       margin: 0;
-      line-height: 1.2;
-    }
 
-    h2 {
-      line-height: 1.7;
-
-      &:before {
-        content: "\273b";
-        padding-right: .2em;
-        color: #E66E04;
+      h1 {
+        margin: 0;
+        line-height: 1.2;
+        font-weight: normal;
+        font-size: 40px;
       }
     }
 
-    img {
-      max-width: 100%;
-    }
-
-    ul, ol {
-      margin: 0;
-    }
-
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5em;
-    }
-
-    .datetime {
+    footer {
       color: $text_light_color;
 
       i {
@@ -38,6 +21,45 @@
 
     .body {
       margin-top: 1em;
+
+      h1 {
+        margin: 2em 0;
+        border-bottom: dashed 1px #999;
+        box-shadow: 0 1px 1px white;
+        line-height: 1.7;
+        font-size: 1.2em;
+      }
+
+      h2 {
+        margin: 2em 0 0;
+        line-height: 1.7;
+        font-size: 1em;
+        color: black;
+
+        &:before {
+          content: "\273b";
+          padding-right: .4em;
+          color: red;
+        }
+      }
+
+      h3 {
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      ul, ol {
+        margin: 0;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 1.5em;
+      }
     }
   }
 }

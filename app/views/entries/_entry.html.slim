@@ -1,10 +1,12 @@
 article
-  h1
-    = entry.title
+  header
+    h1
+      = entry.title
 
-  .datetime
-    i.icon-time
-    = pretty_datetime(entry.modified_at)
+  footer
+    .datetime
+      i.icon-time
+      = pretty_datetime(entry.modified_at)
 
   .body
     = entry.parsed_body
