@@ -92,7 +92,8 @@ class Entry < ActiveRecord::Base
   end
 
   def title
-    path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
+    str = path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
+    str.gsub(/[A-Za-z]+/) { |lowercase| lowercase.camelize }
   end
 
   def parsed_body
