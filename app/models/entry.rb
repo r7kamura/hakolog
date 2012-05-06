@@ -28,15 +28,14 @@ class Entry < ActiveRecord::Base
   before_save :add_modified_at
   before_update :update_blog_modified_at
   before_destroy :file_delete
+  after_create :post
 
   # overwrite
   def self.create(attributes = nil, options = {}, &block)
     if title = attributes.delete(:title)
       attributes[:path] = fullpath(title)
     end
-
     super
-    post
   end
 
   # overwrite
