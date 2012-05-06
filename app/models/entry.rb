@@ -28,7 +28,6 @@ class Entry < ActiveRecord::Base
   before_save :add_modified_at
   before_update :update_blog_modified_at
   before_destroy :file_delete
-  after_create :post
 
   paginates_per 10
 
@@ -57,11 +56,12 @@ class Entry < ActiveRecord::Base
   end
 
   def self.create_by_controller(params, blog)
-    create(
+    entry = create(
       :blog_id => blog.id,
       :title   => params[:entry][:title],
       :body    => params[:entry][:body]
     )
+    entry.post
   end
 
   def self.initialize_with_title(args)
