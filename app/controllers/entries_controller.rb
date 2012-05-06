@@ -17,9 +17,8 @@ class EntriesController < ApplicationController
   end
 
   def search
-    entries = @blog.entries.search(params[:query])
     render :partial => "entries/entries",
-      :locals => { :entries => entries }
+      :locals => { :entries => @blog.entries.search(params[:query]) }
   end
 
   def new
