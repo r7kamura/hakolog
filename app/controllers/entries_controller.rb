@@ -5,7 +5,6 @@ class EntriesController < ApplicationController
 
   def index
     @entries = @blog.entries
-
     respond_to do |format|
       format.html
       format.rss { render :layout => false }
@@ -26,14 +25,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    if entry = Entry.create_with_title(
-      :title   => params[:entry][:title],
-      :body    => params[:entry][:body],
-      :blog_id => current_blog.id
-    ) then
-      entry.post
-      current_blog.synced_at = Time.now
-      current_blog.save
+    if entry = Entry.create_by_controller(params, current_blog)
       redirect_to [current_blog, entry]
     else
       redirect_to request.referer
@@ -41,16 +33,7 @@ class EntriesController < ApplicationController
   end
 
   def update
-    if @entry && @entry.blog_id == current_blog.id
-      old_path = @entry.path
-      if @entry.update_with_title(
-        :title => params[:entry][:title],
-        :body  => params[:entry][:body],
-      ) then
-        move(old_path, @entry.path) if @entry.path != old_path
-        @entry.post(true)
-      end
-    end
+    @entry.update_by_controller(params)
     redirect_to [current_blog, @entry]
   end
 
@@ -74,10 +57,5 @@ class EntriesController < ApplicationController
   def check_author
     @entry.blog == current_blog or
       redirect_to blog_entries_path(current_blog)
-  end
-
-  # move file on Dropbox
-  def move(old_path, new_path)
-    client.file_move(old_path, new_path)
   end
 end

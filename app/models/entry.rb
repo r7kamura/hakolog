@@ -29,6 +29,28 @@ class Entry < ActiveRecord::Base
   before_update :update_blog_modified_at
   before_destroy :file_delete
 
+  # overwrite
+  def self.create(attributes = nil, options = {}, &block)
+    if title = attributes.delete(:title)
+      attributes[:path] = fullpath(title)
+    end
+
+    super
+    post
+  end
+
+  # overwrite
+  def update_attributes(attributes)
+    if title = attributes.delete(:title)
+      attributes[:path] = self.class.fullpath(title)
+    end
+
+    before = path
+    super
+    move(before, path) if before != path
+    post(:true)
+  end
+
   def self.parse(body)
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, MARKDOWN_OPTION)
     parser.render(body)
@@ -45,9 +67,19 @@ class Entry < ActiveRecord::Base
     ).first
   end
 
-  def self.create_with_title(args)
-    obj = initialize_with_title(args)
-    obj.save && obj
+  def self.create_by_controller(params, blog)
+    create(
+      :blog_id => blog.id,
+      :title   => params[:entry][:title],
+      :body    => params[:entry][:body]
+    )
+  end
+
+  def update_by_controller(params)
+    update_attributes(
+      :title => params[:entry][:title],
+      :body  => params[:entry][:body]
+    )
   end
 
   def self.initialize_with_title(args)
@@ -55,13 +87,6 @@ class Entry < ActiveRecord::Base
       :blog_id => args[:blog_id],
       :body    => args[:body],
       :path    => fullpath(args.delete(:title))
-    )
-  end
-
-  def update_with_title(args)
-    update_attributes(
-      :body => args[:body],
-      :path => self.class.fullpath(args.delete(:title))
     )
   end
 
@@ -94,16 +119,21 @@ class Entry < ActiveRecord::Base
   end
 
   def update_blog_modified_at
-    self.blog.update_attributes(:modified_at => Time.now)
+    self.blog.update_attributes(:modified_at => self.modified_at)
   end
 
   def post(overwrite = false)
     temp = Tempfile.new("")
-    temp.write(self.body)
+    temp.write(body)
     temp.close
     open(temp.path) { |file|
-      self.blog.client.put_file(self.path, file, overwrite)
+      blog.client.put_file(path, file, overwrite)
     }
+  end
+
+  # move file on Dropbox
+  def move(old_path, new_path)
+    blog.client.file_move(old_path, new_path)
   end
 
   def to_param
