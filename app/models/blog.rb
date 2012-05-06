@@ -34,10 +34,7 @@ class Blog < ActiveRecord::Base
   def sync_with_dropbox
     response = get_delta
     response["entries"].each { |info| sync_entry_by_delta(info) }
-    update_attributes(
-      :vertion   => response["cursor"],
-      :synced_at => Time.now
-    )
+    update_attributes(:vertion => response["cursor"])
     sync_with_dropbox if response["has_more"]
   rescue DropboxAuthError
     puts "DropboxAuthError in Blog#sync_with_dropbox: #{self.username}"

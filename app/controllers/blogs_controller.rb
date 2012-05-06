@@ -16,14 +16,16 @@ class BlogsController < ApplicationController
   end
 
   def create
-    blog = Blog.new(
+    if blog = Blog.new(
       :username        => params[:username],
       :dropbox_session => session[:dropbox],
-      :dropbox_id      => uid,
-      :synced_at       => Time.now
-    )
-    session[:blog_id] = blog.id if blog.save
-    redirect_to blog
+      :dropbox_id      => uid
+    ) then
+      session[:blog_id] = blog.id
+      redirect_to blog
+    else
+      redirect_to :root
+    end
   end
 
   def login
