@@ -6,6 +6,8 @@ html
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    - if @blog
+      = auto_discovery_link_tag :rss, blog_entries_path(@blog) + ".rss"
 
   body*{:id => unique_class_name}
     header
