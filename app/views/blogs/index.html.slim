@@ -38,6 +38,6 @@ section
           td.date
             = pretty_date(entry.modified_at)
           td.username
-            = link_to entry.blog.title, blog_entries_path(entry.blog)
+            = link_to entry.blog.title, entry.blog
           td.entry-title
             = link_to entry.title, [entry.blog, entry]

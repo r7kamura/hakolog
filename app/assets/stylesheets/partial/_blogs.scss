@@ -48,3 +48,29 @@
     margin-top: 40px;
   }
 }
+
+
+#blogs_show {
+  .stats {
+    font-weight: bold;
+    color: $text_light_color;
+    @include clearfix;
+
+    div {
+      float: left;
+      margin-right: 1em;
+      font-size: 20px;
+
+      i {
+        margin-right: 5px;
+        font-size: 50px;
+      }
+    }
+  }
+
+  .entry {
+    line-height: 2;
+    @include clearfix;
+    @include datetime_and_title;
+  }
+}

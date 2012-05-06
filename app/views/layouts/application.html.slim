@@ -7,7 +7,7 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
     - if @blog
-      = auto_discovery_link_tag :rss, blog_entries_path(@blog) + ".rss"
+      = auto_discovery_link_tag :rss, blog_path(@blog) + ".rss"
 
   body*{:id => unique_class_name}
     header
@@ -27,7 +27,7 @@ html
             i.icon-home
 
           - if current_blog
-            li= link_to blog_entries_path(current_blog), "original-title" => "You" do
+            li= link_to current_blog, "original-title" => "You" do
               i.icon-user
             li= link_to new_blog_entry_path(current_blog), "original-title" => "Write" do
               i.icon-pencil

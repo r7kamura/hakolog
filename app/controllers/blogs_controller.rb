@@ -1,8 +1,18 @@
 class BlogsController < ApplicationController
+  before_filter :prepare_blog, :only => :show
+
   def index
     @entry   = Entry.new if current_blog
     @entries = Entry.order("modified_at DESC").
       page(params[:page]).per(13).includes(:blog)
+  end
+
+  def show
+    @entries = @blog.entries
+    respond_to do |format|
+      format.html
+      format.rss { render :layout => false }
+    end
   end
 
   def create
@@ -39,5 +49,12 @@ class BlogsController < ApplicationController
 
   def preview
     render :partial => Entry.initialize_with_title(params[:entry])
+  end
+
+  private
+
+  def prepare_blog
+    @blog ||= Blog.find_by_username(params[:username]) or
+      redirect_to :root
   end
 end

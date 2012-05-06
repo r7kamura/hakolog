@@ -3,14 +3,6 @@ class EntriesController < ApplicationController
   before_filter :prepare_entry, :only => %w[show update destroy]
   before_filter :check_author, :only => %w[update destroy]
 
-  def index
-    @entries = @blog.entries
-    respond_to do |format|
-      format.html
-      format.rss { render :layout => false }
-    end
-  end
-
   def show
     @title = @entry.title
   end
@@ -51,11 +43,11 @@ class EntriesController < ApplicationController
 
   def prepare_entry
     @entry ||= Entry.find_by_blog_id_and_title(@blog.id, params[:title]) or
-      redirect_to blog_entries_path(@blog)
+      redirect_to @blog
   end
 
   def check_author
     @entry.blog == current_blog or
-      redirect_to blog_entries_path(current_blog)
+      redirect_to current_blog
   end
 end
