@@ -40,4 +40,4 @@ section
           td.username
             = link_to entry.blog.title, entry.blog
           td.entry-title
-            = link_to entry.title, [entry.blog, entry]
+            = link_to entry.camelized_title, [entry.blog, entry]

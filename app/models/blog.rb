@@ -52,7 +52,6 @@ class Blog < ActiveRecord::Base
     # path was deleted
     if metadata.nil?
       Entry.find_by_path(path).try(:destroy)
-
     # path was edited or created
     elsif !metadata["is_dir"] && path =~ /\.md$/
       modified_at = metadata["modified"]

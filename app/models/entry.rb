@@ -81,7 +81,7 @@ class Entry < ActiveRecord::Base
     before = path
     super
     move(before, path) if before != path
-    post(:true)
+    post(true)
   end
 
   def update_by_controller(params)
@@ -92,8 +92,11 @@ class Entry < ActiveRecord::Base
   end
 
   def title
-    str = path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
-    str.gsub(/[A-Za-z]+/) { |lowercase| lowercase.camelize }
+    path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
+  end
+
+  def camelized_title
+    title.gsub(/[A-Za-z]+/) { |lowercase| lowercase.camelize }
   end
 
   def parsed_body
@@ -124,7 +127,7 @@ class Entry < ActiveRecord::Base
     self.blog.update_attributes(:modified_at => self.modified_at)
   end
 
-  def post(overwrite = false)
+  def post(overwrite = true)
     temp = Tempfile.new("")
     temp.write(body)
     temp.close
