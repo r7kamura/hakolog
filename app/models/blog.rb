@@ -1,5 +1,5 @@
 class Blog < ActiveRecord::Base
-  attr_accessible :username, :dropbox_id, :dropbox_session, :synced_at, :modified_at
+  attr_accessible :username, :dropbox_id, :dropbox_session, :synced_at, :modified_at, :version
 
   has_many :entries, :order => "modified_at DESC"
   has_many :random_entries, :class_name => :Entry,
