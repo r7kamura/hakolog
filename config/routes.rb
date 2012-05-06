@@ -18,10 +18,10 @@ Hakolog::Application.routes.draw do
   end
 
   opts = { :constraints => { :title => /[\s\S]+/ } }
-  get "/:username" => "entries#index", :as => :blog_entries
-  post "/:username" => "entries#create", :as => :blog_entry
-  get "/:username/new" => "entries#new", :as => :new_blog_entry
-  get opts.merge("/:username/:title" => "entries#show", :as => :blog_entry)
-  put opts.merge("/:username/:title" => "entries#update", :as => :blog_entry)
+  get    "/:username" => "entries#index", :as => :blog_entries
+  post   "/:username" => "entries#create", :as => :blog_entry
+  get    "/:username/new" => "entries#new", :as => :new_blog_entry
+  get    opts.merge("/:username/:title" => "entries#show", :as => :blog_entry)
+  put    opts.merge("/:username/:title" => "entries#update", :as => :blog_entry)
   delete opts.merge("/:username/:title" => "entries#destroy", :as => :blog_entry)
 end
