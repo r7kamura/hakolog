@@ -22,6 +22,8 @@ class Entry < ActiveRecord::Base
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
+  validates :path, :presence => true, :uniqueness => { :scope => :blog_id }
+
   before_save :downcase_path
   before_save :add_modified_at
   before_update :update_blog_modified_at
