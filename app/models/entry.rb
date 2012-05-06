@@ -1,16 +1,6 @@
 require "tempfile"
 
 class Entry < ActiveRecord::Base
-  attr_accessible :blog_id, :body, :extension, :path, :modified_at
-
-  belongs_to :blog
-
-  scope :search, lambda { |query|
-    where("path like ? or body like ?", "%#{query}%", "%#{query}%")
-  }
-
-  paginates_per 10
-
   DEFAULT_EXT     = ".md"
   BASE_PATH       = "/entries/"
   MARKDOWN_OPTION = {
@@ -24,11 +14,21 @@ class Entry < ActiveRecord::Base
     :no_intra_emphasis   => true,
   }
 
+  attr_accessible :blog_id, :body, :extension, :path, :modified_at
+
+  belongs_to :blog
+
+  scope :search, lambda { |query|
+    where("path like ? or body like ?", "%#{query}%", "%#{query}%")
+  }
+
   before_save :downcase_path
   before_save :add_modified_at
   before_update :update_blog_modified_at
   before_destroy :file_delete
   after_create :post
+
+  paginates_per 10
 
   # overwrite
   def self.create(attributes = nil, options = {}, &block)
@@ -36,18 +36,6 @@ class Entry < ActiveRecord::Base
       attributes[:path] = fullpath(title)
     end
     super
-  end
-
-  # overwrite
-  def update_attributes(attributes)
-    if title = attributes.delete(:title)
-      attributes[:path] = self.class.fullpath(title)
-    end
-
-    before = path
-    super
-    move(before, path) if before != path
-    post(:true)
   end
 
   def self.parse(body)
@@ -74,18 +62,30 @@ class Entry < ActiveRecord::Base
     )
   end
 
-  def update_by_controller(params)
-    update_attributes(
-      :title => params[:entry][:title],
-      :body  => params[:entry][:body]
-    )
-  end
-
   def self.initialize_with_title(args)
     new(
       :blog_id => args[:blog_id],
       :body    => args[:body],
       :path    => fullpath(args.delete(:title))
+    )
+  end
+
+  # overwrite
+  def update_attributes(attributes)
+    if title = attributes.delete(:title)
+      attributes[:path] = self.class.fullpath(title)
+    end
+
+    before = path
+    super
+    move(before, path) if before != path
+    post(:true)
+  end
+
+  def update_by_controller(params)
+    update_attributes(
+      :title => params[:entry][:title],
+      :body  => params[:entry][:body]
     )
   end
 
@@ -138,8 +138,6 @@ class Entry < ActiveRecord::Base
   def to_param
     title
   end
-
-  private
 
   def self.fullpath(title)
     BASE_PATH + title + DEFAULT_EXT
