@@ -62,6 +62,7 @@ class Entry < ActiveRecord::Base
       :body    => params[:entry][:body]
     )
     entry.post
+    entry
   end
 
   def self.initialize_with_title(args)
