@@ -77,7 +77,7 @@ Hakolog.register('blogs_index', function() {
   this.bindAutoPreview();
 });
 
-Hakolog.register('entries_index', function() {
+Hakolog.register('blogs_show', function() {
   this.focusFirstInput();
   //this.bindIncrementalSearch();
 });
