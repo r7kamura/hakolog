@@ -33,25 +33,14 @@ class Blog < ActiveRecord::Base
   # update by Dropbox delta API & save latest version key
   def sync_with_dropbox
     response = get_delta
-    response["entries"].each do |info|
-      sync_entry_by_delta(info)
-    end
-    self.version   = response["cursor"]
-    self.synced_at = Time.now
-    self.save
-
-    sync_with_dropbox if response[:has_more]
-  rescue DropboxAuthError
-    puts "#{self.username} : DropboxAuthError"
-  end
-
-  def create_default_files
-    post(
-      Entry::BASE_PATH + "README.md",
-      Rails.root.join("README.md").read,
-      true
+    response["entries"].each { |info| sync_entry_by_delta(info) }
+    update_attributes(
+      :vertion   => response["cursor"],
+      :synced_at => Time.now
     )
-    sync_with_dropbox
+    sync_with_dropbox if response["has_more"]
+  rescue DropboxAuthError
+    puts "DropboxAuthError in Blog#sync_with_dropbox: #{self.username}"
   end
 
   def to_param
@@ -72,9 +61,9 @@ class Blog < ActiveRecord::Base
       modified_at = metadata["modified"]
       entry = Entry.find_or_initialize_by_blog_id_and_path(self.id, path)
       if entry.can_overwrite?(modified_at)
-        entry.body = client.get_file(path).force_encoding("utf-8")
-        entry.modified_at = modified_at
-        entry.save
+        entry.update_attributes(
+          :body => client.get_file(path).force_encoding("utf-8")
+        )
       end
     end
   end
@@ -84,12 +73,12 @@ class Blog < ActiveRecord::Base
     client.delta(self.version)
   end
 
-  def post(path, body, overwrite = false)
-    temp = Tempfile.new("")
-    temp.write(body)
-    temp.close
-    open(temp.path) { |file|
-      client.put_file(path, file, overwrite)
-    }
+  def create_default_files
+    Entry.create(
+      :blog_id => id,
+      :title   => "README",
+      :body    => Rails.root.join("README.md").read,
+    )
+    sync_with_dropbox
   end
 end
