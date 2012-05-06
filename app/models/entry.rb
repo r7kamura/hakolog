@@ -1,3 +1,5 @@
+require "tempfile"
+
 class Entry < ActiveRecord::Base
   attr_accessible :blog_id, :body, :extension, :path, :modified_at
 
@@ -93,6 +95,15 @@ class Entry < ActiveRecord::Base
 
   def update_blog_modified_at
     self.blog.update_attributes(:modified_at => Time.now)
+  end
+
+  def post(overwrite = false)
+    temp = Tempfile.new("")
+    temp.write(self.body)
+    temp.close
+    open(temp.path) { |file|
+      self.blog.client.put_file(self.path, file, overwrite)
+    }
   end
 
   def to_param

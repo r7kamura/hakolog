@@ -1,5 +1,3 @@
-require "tempfile"
-
 class EntriesController < ApplicationController
   before_filter :prepare_blog
   before_filter :prepare_entry, :only => %w[show update destroy]
@@ -34,7 +32,7 @@ class EntriesController < ApplicationController
       :body    => params[:entry][:body],
       :blog_id => current_blog.id
     ) then
-      post(entry)
+      entry.post
       current_blog.synced_at = Time.now
       current_blog.save
       redirect_to [current_blog, entry]
@@ -51,7 +49,7 @@ class EntriesController < ApplicationController
         :body  => params[:entry][:body],
       ) then
         move(old_path, @entry.path) if @entry.path != old_path
-        post(@entry, true)
+        @entry.post(true)
       end
     end
     redirect_to [current_blog, @entry]
@@ -77,16 +75,6 @@ class EntriesController < ApplicationController
   def check_author
     @entry.blog == current_blog or
       redirect_to blog_entries_path(current_blog)
-  end
-
-  # create file on Dropbox
-  def post(entry, overwrite = false)
-    temp = Tempfile.new("")
-    temp.write(entry.body)
-    temp.close
-    open(temp.path) { |file|
-      client.put_file(entry.path, file, overwrite)
-    }
   end
 
   # move file on Dropbox
