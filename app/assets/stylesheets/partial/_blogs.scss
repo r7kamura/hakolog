@@ -68,9 +68,7 @@
     }
   }
 
-  .entry {
-    line-height: 2;
-    @include clearfix;
-    @include datetime_and_title;
+  .entries {
+    margin-top: 1em;
   }
 }

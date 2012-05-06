@@ -1,7 +1,7 @@
-ul.entries
+table.entries
   - entries.each do |entry|
-    li.entry
-      .datetime
+    tr.entry
+      td.datetime
         = pretty_date(entry.modified_at)
-      .title
+      td.title
         = link_to entry.camelized_title, blog_entry_path(entry.blog, entry)
