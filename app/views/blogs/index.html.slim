@@ -1,43 +1,43 @@
-- unless current_blog
-  .hero-unit
-    h2
-      | あらゆるブログとかに対する
-      br
-      | 最高のソリューション
+article.hero-unit
+  - unless current_blog
+      h2
+        | あらゆるブログとかに対する
+        br
+        | 最高のソリューション
 
-    - if login?
-      = form_tag :blogs, :class => :form_create_blog do
-        .input-prepend.input-append
-          span.add-on
+      - if login?
+        = form_tag :blogs, :class => :form_create_blog do
+          .input-prepend.input-append
+            span.add-on
+              i.icon-user
+            = text_field_tag :username, "", :placeholder => "username", :class => "span4"
+            = button_tag :class => "btn btn-info", :type => :submit do
+              i.icon-ok
+      - else
+        p.button_container
+          = link_to login_path, :class => "btn btn-info" do
+            i.icon-signin
+            = "Login with Dropbox"
+
+      p
+        = image_tag("about.jpg")
+
+  section
+    table.blogs
+      thead
+        tr
+          th.date
+            i.icon-time
+          th.username
             i.icon-user
-          = text_field_tag :username, "", :placeholder => "username", :class => "span4"
-          = button_tag :class => "btn btn-info", :type => :submit do
-            i.icon-ok
-    - else
-      p.button_container
-        = link_to login_path, :class => "btn btn-info" do
-          i.icon-signin
-          = "Login with Dropbox"
-
-    p
-      = image_tag("about.jpg")
-
-section
-  table.blogs
-    thead
-      tr
-        th.date
-          i.icon-time
-        th.username
-          i.icon-user
-        th.entry-title
-          i.icon-file
-    tbody
-      - @entries.each do |entry|
-        tr.blog
-          td.date
-            = pretty_date(entry.modified_at)
-          td.username
-            = link_to entry.blog.title, entry.blog
-          td.entry-title
-            = link_to entry.camelized_title, [entry.blog, entry]
+          th.entry-title
+            i.icon-file
+      tbody
+        - @entries.each do |entry|
+          tr.blog
+            td.date
+              = pretty_date(entry.modified_at)
+            td.username
+              = link_to entry.blog.title, entry.blog
+            td.entry-title
+              = link_to entry.camelized_title, [entry.blog, entry]

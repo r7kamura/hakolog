@@ -1,11 +1,5 @@
 @mixin entry {
   article {
-    padding: 40px;
-    border: solid 1px #ccc;
-    box-shadow: inset 0 0 3px #ddd;
-    background: white;
-    @include border_radius(5px);
-
     header {
       margin: 0;
 
