@@ -78,7 +78,6 @@ Hakolog.register('blogs_index', function() {
 });
 
 Hakolog.register('blogs_show', function() {
-  this.focusFirstInput();
   this.bindIncrementalSearch();
 });
 
