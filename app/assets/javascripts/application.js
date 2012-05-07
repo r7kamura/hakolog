@@ -59,10 +59,10 @@ var Hakolog = {
   },
 
   bindIncrementalSearch: function() {
-    $('.form-search').keyup(function() {
+    $('#form-search').keyup(function() {
       $(this).submit();
     }).on('ajax:success', function(event, data) {
-      $('.entries').html(data);
+      $('#entries-outer').html(data);
     });
   },
 
@@ -79,7 +79,7 @@ Hakolog.register('blogs_index', function() {
 
 Hakolog.register('blogs_show', function() {
   this.focusFirstInput();
-  //this.bindIncrementalSearch();
+  this.bindIncrementalSearch();
 });
 
 Hakolog.register('entries_new', function() {

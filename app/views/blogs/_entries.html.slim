@@ -1,7 +1,7 @@
 table.entries
   - entries.each do |entry|
     tr.entry
-      td.datetime
+      td.date
         = pretty_date(entry.modified_at)
       td.title
         = link_to entry.camelized_title, blog_entry_path(entry.blog, entry)
