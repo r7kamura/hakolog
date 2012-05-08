@@ -50,21 +50,15 @@ article.hero-unit
           | iPhoneやAndroidからでもDropboxアプリで多分編集できます。
 
   section
+    h3
+      i.icon-tags
+      | Recent
     table.blogs
-      thead
-        tr
-          th.date
-            i.icon-time
-          th.username
-            i.icon-user
-          th.entry-title
-            i.icon-file
-      tbody
-        - @entries.each do |entry|
-          tr.blog
-            td.date
-              = pretty_date(entry.modified_at)
-            td.username
-              = link_to entry.blog.title, entry.blog
-            td.entry-title
-              = link_to entry.camelized_title, [entry.blog, entry]
+      - @entries.each do |entry|
+        tr.blog
+          td.date
+            = pretty_date(entry.modified_at)
+          td.username
+            = link_to entry.blog.title, entry.blog
+          td.entry-title
+            = link_to entry.camelized_title, [entry.blog, entry]
