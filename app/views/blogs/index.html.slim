@@ -1,26 +1,26 @@
 article.hero-unit
+  h2
+    | あらゆるブログとかに対する
+    br
+    | 最高のソリューション
+
   - unless current_blog
-      h2
-        | あらゆるブログとかに対する
-        br
-        | 最高のソリューション
+    - if login?
+      = form_tag :blogs, :class => :form_create_blog do
+        .input-prepend.input-append
+          span.add-on
+            i.icon-user
+          = text_field_tag :username, "", :placeholder => "username", :class => "span4"
+          = button_tag :class => "btn btn-info", :type => :submit do
+            i.icon-ok
+    - else
+      p.button_container
+        = link_to login_path, :class => "btn btn-info" do
+          i.icon-signin
+          = "Login with Dropbox"
 
-      - if login?
-        = form_tag :blogs, :class => :form_create_blog do
-          .input-prepend.input-append
-            span.add-on
-              i.icon-user
-            = text_field_tag :username, "", :placeholder => "username", :class => "span4"
-            = button_tag :class => "btn btn-info", :type => :submit do
-              i.icon-ok
-      - else
-        p.button_container
-          = link_to login_path, :class => "btn btn-info" do
-            i.icon-signin
-            = "Login with Dropbox"
-
-      p
-        = image_tag("about.jpg")
+  p
+    = image_tag("about.jpg")
 
   section
     table.blogs
