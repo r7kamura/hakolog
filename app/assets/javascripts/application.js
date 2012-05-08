@@ -46,7 +46,7 @@ var Hakolog = {
         form.serialize(),
         function(data) {
           preview.html(data);
-          self.prettifyCode();
+          $(window).trigger('change');
         }
       );
     };
@@ -68,9 +68,11 @@ var Hakolog = {
     });
   },
 
-  prettifyCode: function() {
-    $('pre').addClass('prettyprint');
-    prettyPrint();
+  bindPrettifyCode: function() {
+    $(window).bind('change', function() {
+      $('pre').addClass('prettyprint');
+      prettyPrint();
+    });
   }
 };
 
@@ -86,13 +88,15 @@ Hakolog.register('blogs_show', function() {
 Hakolog.register('entries_new', function() {
   this.focusFirstInput();
   this.bindAutoPreview();
+  this.bindPrettifyCode();
 });
 
 Hakolog.register('entries_show', function() {
-  this.prettifyCode();
+  this.bindPrettifyCode();
 });
 
 $(function() {
   Hakolog.dispatch();
   $('a[original-title]').tipsy();
+  $(window).trigger('change');
 });
