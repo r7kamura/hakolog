@@ -28,6 +28,39 @@
         width: 130px;
       }
     }
+
+    aside {
+      margin-bottom: 40px;
+
+      ul {
+        margin: 0;
+        @include clearfix;
+
+        li {
+          float: left;
+          height: 120px;
+          width: 160px;
+          margin: 10px 10px 0 0;
+          padding: 10px;
+          background: -webkit-linear-gradient(top,rgba(249, 249, 249, 1) 50%,rgba(240, 240, 240, 1) 100%);
+          box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+          @include border_radius(5px);
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          h3 {
+            margin: 0;
+          }
+
+          p {
+            font-size: 80%;
+            text-align: justify;
+          }
+        }
+      }
+    }
   }
 
   section {
