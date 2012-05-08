@@ -1,4 +1,5 @@
-= render :partial => @entry
+#preview*{"data-url" => preview_blogs_path}
+  = render :partial => @entry
 
 - if @blog == current_blog
   = render :partial => "form_entry", :locals => {:entry => @entry}

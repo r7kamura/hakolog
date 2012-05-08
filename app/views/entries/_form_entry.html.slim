@@ -15,6 +15,3 @@
     = link_to [current_blog, entry], :data => { :method => :delete }, \
       :confirm => "OK?", :class => "btn btn-danger" do
       i.icon-trash
-
-- unless entry.persisted?
-  #preview*{"data-url" => preview_blogs_path}

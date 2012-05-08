@@ -78,7 +78,6 @@ var Hakolog = {
 
 Hakolog.register('blogs_index', function() {
   this.focusFirstInput();
-  this.bindAutoPreview();
 });
 
 Hakolog.register('blogs_show', function() {
@@ -93,6 +92,7 @@ Hakolog.register('entries_new', function() {
 
 Hakolog.register('entries_show', function() {
   this.bindPrettifyCode();
+  this.bindAutoPreview();
 });
 
 $(function() {

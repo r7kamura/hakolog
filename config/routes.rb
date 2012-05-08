@@ -8,6 +8,7 @@ Hakolog::Application.routes.draw do
   resources :blogs, :except => %w[index show] do
     collection do
       post "preview"
+      put  "preview"
     end
 
     resources :entries, :except => %w[index show create update] do
