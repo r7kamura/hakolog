@@ -16,7 +16,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    if blog = Blog.new(
+    if blog = Blog.create(
       :username        => params[:username],
       :dropbox_session => session[:dropbox],
       :dropbox_id      => uid
