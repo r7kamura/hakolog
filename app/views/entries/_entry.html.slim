@@ -1,12 +1,13 @@
 article
   header
     h1
-      = entry.camelized_title
+      = link_to entry.camelized_title, [entry.blog, entry]
 
   footer
     .datetime
       i.icon-time
       = pretty_datetime(entry.modified_at)
+    .star-container
 
   .body
     = entry.parsed_body

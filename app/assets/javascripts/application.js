@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require external/google-code-prettify/prettify
+//= require external/hatena-star
 //= require_tree .
 
 var Hakolog = {

@@ -1,6 +1,6 @@
 // about header & footer
 
-header {
+body > header {
   margin-bottom: 20px;
   @include clearfix;
 

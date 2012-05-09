@@ -8,14 +8,42 @@
         line-height: 1.2;
         font-weight: normal;
         font-size: 40px;
+
+        a {
+          color: $text_color;
+        }
       }
     }
 
     footer {
       color: $text_light_color;
+      @include clearfix;
 
-      i {
-        margin-right: 5px;
+      .datetime {
+        float: left;
+
+        i {
+          margin: 0 4px;
+        }
+      }
+
+      .star-container {
+        float: left;
+        margin-left: 10px;
+        line-height: 1.5;
+
+        .hatena-star-comment-button,
+        .hatena-star-add-button {
+          vertical-align: text-bottom !important;
+        }
+
+        .hatena-star-add-button-image {
+          background-image: url("http://s.hatena.ne.jp/images/add_bl.gif");
+        }
+
+        .hatena-star-comment-button-image {
+          background-image: url("http://s.hatena.ne.jp/images/comment_bl.gif");
+        }
       }
     }
 
