@@ -50,7 +50,9 @@ class BlogsController < ApplicationController
   end
 
   def preview
-    render :partial => Entry.initialize_with_title(params[:entry])
+    render :partial => Entry.initialize_with_title(
+      params[:entry].merge(:blog_id => current_blog)
+    )
   end
 
   private
