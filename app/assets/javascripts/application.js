@@ -92,24 +92,23 @@ var Hakolog = {
 
     focusFirst();
     form.keyup(function(e) {
-      var keyStr = keyString(e);
+      var key = keyString(e);
       if (
-        keyStr == 'Up'    ||
-        keyStr == 'Down'  ||
-        keyStr == 'Left'  ||
-        keyStr == 'Right' ||
-        keyStr == 'Return'
+        key == 'Up'    ||
+        key == 'Down'  ||
+        key == 'Left'  ||
+        key == 'Right' ||
+        key == 'Return'
       ) return;
       allEntries ?
         $(this).trigger('update') :
         $(this).submit();
 
     }).keydown(function(e) {
-      ({
-        Up:     function() { move('prev') },
-        Down:   function() { move('next') },
-        Return: function() { visitFocusedEntry() }
-      }[keyString(e)] || function() {})();
+      var key = keyString(e);
+      if      (key == 'Up')     { move('prev') }
+      else if (key == 'Down')   { move('next') }
+      else if (key == 'Return') { visitFocusedEntry() }
 
     }).on('ajax:success', function(event, data) {
       /* disable submit when once you submit */
