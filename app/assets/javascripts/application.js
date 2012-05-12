@@ -64,7 +64,6 @@ var Hakolog = {
   bindSmartSearch: function() {
     var allEntries;
     var hitEntries;
-    var self;
 
     $('#form-search').keyup(function() {
       if (!allEntries) {
@@ -75,7 +74,6 @@ var Hakolog = {
     }).on('ajax:success', function(event, data) {
       allEntries = $(data);
       $(this).trigger('fetch');
-
     }).bind('fetch', function() {
       var input = $(this).find('input[type=text]').val();
       hitEntries = allEntries.clone();
