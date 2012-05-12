@@ -109,5 +109,9 @@
     .date {
       width: 100px;
     }
+
+    .entry.focused {
+      background: lightYellow;
+    }
   }
 }

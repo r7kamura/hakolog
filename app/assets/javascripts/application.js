@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require external/google-code-prettify/prettify
 //= require external/hatena-star
+//= require external/keyString
 //= require_tree .
 
 var Hakolog = {
@@ -64,25 +65,70 @@ var Hakolog = {
   bindSmartSearch: function() {
     var allEntries;
     var hitEntries;
-
-    $('#form-search').keyup(function() {
-      if (!allEntries) {
-        $(this).submit();
-      } else {
-        $(this).trigger('fetch');
+    var self         = this;
+    var form         = $('#form-search');
+    var entriesOuter = $('#entries-outer');
+    var focusedClass = 'focused';
+    var focusedEntry = function() {
+      return entriesOuter.find('.' + focusedClass);
+    };
+    var focusFirst = function() {
+      if (!focusedEntry().length) {
+        entriesOuter.find('.entry').removeClass(focusedClass);
+        entriesOuter.find('.entry:nth-child(1)').addClass(focusedClass);
       }
+    };
+    var move = function(prevOrNext) {
+      var before = focusedEntry();
+      var after  = before[prevOrNext]();
+      if (after.length) {
+        before.removeClass(focusedClass);
+        after.addClass(focusedClass);
+      }
+    };
+    var visitFocusedEntry = function() {
+      location.href = focusedEntry().find('a').attr('href');
+    };
+
+    focusFirst();
+    form.keyup(function(e) {
+      var keyStr = keyString(e);
+      if (
+        keyStr == 'Up'    ||
+        keyStr == 'Down'  ||
+        keyStr == 'Left'  ||
+        keyStr == 'Right' ||
+        keyStr == 'Return'
+      ) return;
+      allEntries ?
+        $(this).trigger('update') :
+        $(this).submit();
+
+    }).keydown(function(e) {
+      ({
+        Up:     function() { move('prev') },
+        Down:   function() { move('next') },
+        Return: function() { visitFocusedEntry() }
+      }[keyString(e)] || function() {})();
+
     }).on('ajax:success', function(event, data) {
+      /* disable submit when once you submit */
+      $(this).bind('ajax:before', function() { return false });
       allEntries = $(data);
-      $(this).trigger('fetch');
-    }).bind('fetch', function() {
+      $(this).trigger('update');
+
+    }).bind('update', function() {
       var input = $(this).find('input[type=text]').val();
       hitEntries = allEntries.clone();
-      hitEntries.find('tr').each(function() {
+      hitEntries.find('.entry').each(function() {
         if (!$(this).find('.title').text().match(new RegExp(input, 'i'))) {
           $(this).remove();
         }
       });
-      $('#entries-outer').html(hitEntries);
+      if (entriesOuter.html() != hitEntries) {
+        entriesOuter.html(hitEntries);
+        focusFirst();
+      }
     });
   },
 
