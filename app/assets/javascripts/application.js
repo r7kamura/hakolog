@@ -61,11 +61,30 @@ var Hakolog = {
     });
   },
 
-  bindIncrementalSearch: function() {
+  bindSmartSearch: function() {
+    var allEntries;
+    var hitEntries;
+    var self;
+
     $('#form-search').keyup(function() {
-      $(this).submit();
+      if (!allEntries) {
+        $(this).submit();
+      } else {
+        $(this).trigger('fetch');
+      }
     }).on('ajax:success', function(event, data) {
-      $('#entries-outer').html(data);
+      allEntries = $(data);
+      $(this).trigger('fetch');
+
+    }).bind('fetch', function() {
+      var input = $(this).find('input[type=text]').val();
+      hitEntries = allEntries.clone();
+      hitEntries.find('tr').each(function() {
+        if (!$(this).find('.title').text().match(new RegExp(input, 'i'))) {
+          $(this).remove();
+        }
+      });
+      $('#entries-outer').html(hitEntries);
     });
   },
 
@@ -82,7 +101,8 @@ Hakolog.register('blogs_index', function() {
 });
 
 Hakolog.register('blogs_show', function() {
-  this.bindIncrementalSearch();
+  this.focusFirstInput();
+  this.bindSmartSearch();
 });
 
 Hakolog.register('entries_new', function() {
