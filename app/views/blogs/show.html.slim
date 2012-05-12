@@ -12,6 +12,7 @@ article
     = hidden_field_tag :page, params[:page]
     = text_field_tag :query, params[:query], \
       :placeholder => "#{unicode(:scissors)} Search".html_safe, \
+      :spellcheck => false, :autocomplete => :off, \
       :class => "search-query"
 
   #entries-outer
