@@ -86,6 +86,10 @@
 
 
 #blogs_show {
+  input[type=text] {
+    @include box_sizing;
+  }
+
   .stats {
     font-weight: bold;
     color: $text_light_color;
@@ -106,12 +110,16 @@
   .entries {
     margin-top: 1em;
 
+    td {
+      padding: 0 10px;
+    }
+
     .date {
-      width: 100px;
+      width: 90px;
     }
 
     .entry.focused {
-      background: lightYellow;
+      background: #f3f3f3;
     }
   }
 }

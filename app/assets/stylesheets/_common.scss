@@ -18,3 +18,9 @@ $text_very_light_color: #ccc;
   -moz-border-radius: $r;
   border-radius: $r;
 }
+
+@mixin box_sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
