@@ -13,7 +13,7 @@ Hakolog::Application.routes.draw do
 
     resources :entries, :except => %w[index show create update] do
       collection do
-        get "search"
+        get "all"
       end
     end
   end

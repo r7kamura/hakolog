@@ -7,9 +7,9 @@ class EntriesController < ApplicationController
     @title = @entry.title
   end
 
-  def search
+  def all
     render :partial => "blogs/entries",
-      :locals => { :entries => @blog.entries.search(params[:query]) }
+      :locals => { :entries => @blog.entries.all }
   end
 
   def new

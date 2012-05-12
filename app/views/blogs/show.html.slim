@@ -7,10 +7,10 @@ article
       i.icon-bar-chart
       = @blog.entry_date_count
 
-  = form_tag search_blog_entries_path(@blog), :method => :get, :id => "form-search", :remote => true do
+  = form_tag all_blog_entries_path(@blog), :method => :get, :id => "form-search", :remote => true do
     = hidden_field_tag :username, params[:username]
     = hidden_field_tag :page, params[:page]
-    = text_field_tag :query, params[:query], \
+    = text_field_tag :trash, params[:trash], \
       :placeholder => "#{unicode(:scissors)} Search".html_safe, \
       :spellcheck => false, :autocomplete => :off, \
       :class => "search-query"
