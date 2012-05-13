@@ -86,8 +86,18 @@ var Hakolog = {
         after.addClass(focusedClass);
       }
     };
-    var visitFocusedEntry = function() {
-      location.href = focusedEntry().find('a').attr('href');
+    var visitFocusedEntry = function(isBackground) {
+      var url = focusedEntry().find('a').attr('href');
+      if (isBackground) {
+        var a          = document.createElement('a');
+        var clickEvent = document.createEvent('MouseEvents');
+        clickEvent.initMouseEvent('click', true, true, window, 0, 0, 0, 0,
+          false, false, false, false, 1, null);
+        a.href = url;
+        a.dispatchEvent(clickEvent);
+      } else {
+        location.href = url;
+      }
     };
 
     focusFirst();
@@ -106,9 +116,10 @@ var Hakolog = {
 
     }).keydown(function(e) {
       var key = keyString(e);
-      if      (key == 'Up')     { move('prev') }
-      else if (key == 'Down')   { move('next') }
-      else if (key == 'Return') { visitFocusedEntry() }
+      if      (key == 'Up')       { move('prev') }
+      else if (key == 'Down')     { move('next') }
+      else if (key == 'Return')   { visitFocusedEntry() }
+      else if (key == 'C-Return') { visitFocusedEntry(true) }
 
     }).on('ajax:success', function(event, data) {
       /* disable submit when once you submit */
@@ -124,7 +135,7 @@ var Hakolog = {
           $(this).remove();
         }
       });
-      if (entriesOuter.html() != hitEntries) {
+      if (entriesOuter.find('.entry').length != hitEntries.find('.entry').length) {
         entriesOuter.html(hitEntries);
         focusFirst();
       }
