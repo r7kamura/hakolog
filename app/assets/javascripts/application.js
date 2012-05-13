@@ -62,7 +62,7 @@ var Hakolog = {
     });
   },
 
-  bindSmartSearch: function() {
+  bindFinder: function() {
     var allEntries;
     var hitEntries;
     var self         = this;
@@ -175,7 +175,7 @@ Hakolog.register('blogs_index', function() {
 
 Hakolog.register('blogs_show', function() {
   this.focusFirstInput();
-  this.bindSmartSearch();
+  this.bindFinder();
 });
 
 Hakolog.register('entries_new', function() {
