@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
   before_filter :check_author, :only => %w[update destroy]
 
   def show
-    @title = @entry.title
+    @title = @entry.camelized_title
   end
 
   def all
