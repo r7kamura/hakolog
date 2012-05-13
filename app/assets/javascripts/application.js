@@ -116,8 +116,8 @@ var Hakolog = {
 
     }).keydown(function(e) {
       var key = keyString(e);
-      if      (key == 'Up')       { move('prev') }
-      else if (key == 'Down')     { move('next') }
+      if      (key == 'Up')       { move('prev'); e.preventDefault() }
+      else if (key == 'Down')     { move('next'); e.preventDefault() }
       else if (key == 'Return')   { visitFocusedEntry() }
       else if (key == 'C-Return') { visitFocusedEntry(true) }
 
