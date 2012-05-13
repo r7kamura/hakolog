@@ -64,7 +64,6 @@ var Hakolog = {
 
   bindFinder: function() {
     var allEntries;
-    var hitEntries;
     var self         = this;
     var form         = $('#form-search');
     var entriesOuter = $('#entries-outer');
@@ -119,7 +118,7 @@ var Hakolog = {
 
     }).bind('update', function() {
       var input = $(this).find('input[type=text]').val();
-      hitEntries = allEntries.clone();
+      var hitEntries = allEntries.clone();
       hitEntries.find('.entry').each(function() {
         if (!$(this).find('.title').text().match(new RegExp(input, 'i'))) {
           $(this).remove();
