@@ -53,7 +53,7 @@ var Hakolog = {
       );
     };
 
-    form.find(':input').keyup(function() {
+    form.keyup(function() {
       var after = form.serialize();
       if (before == after) { return }
       before = after;
@@ -73,10 +73,9 @@ var Hakolog = {
       return entriesOuter.find('.' + focusedClass);
     };
     var focusFirst = function() {
-      if (!focusedEntry().length) {
-        entriesOuter.find('.entry').removeClass(focusedClass);
-        entriesOuter.find('.entry:nth-child(1)').addClass(focusedClass);
-      }
+      if (focusedEntry().length) return;
+      entriesOuter.find('.entry').removeClass(focusedClass);
+      entriesOuter.find('.entry:nth-child(1)').addClass(focusedClass);
     };
     var move = function(prevOrNext) {
       var before = focusedEntry();
@@ -84,24 +83,22 @@ var Hakolog = {
       if (after.length) {
         before.removeClass(focusedClass);
         after.addClass(focusedClass);
+        self.adjustScroll(after);
       }
     };
-    var visitFocusedEntry = function(isBackground) {
-      var url = focusedEntry().find('a').attr('href');
-      if (isBackground) {
-        var a          = document.createElement('a');
-        var clickEvent = document.createEvent('MouseEvents');
-        clickEvent.initMouseEvent('click', true, true, window, 0, 0, 0, 0,
-          false, false, false, false, 1, null);
-        a.href = url;
-        a.dispatchEvent(clickEvent);
-      } else {
-        location.href = url;
-      }
+    var visitFocusedEntry = function(inBackground) {
+      self.visitUrl(focusedEntry().find('a').attr('href'), inBackground);
     };
 
     focusFirst();
-    form.keyup(function(e) {
+    form.keydown(function(e) {
+      var key = keyString(e);
+      if      (key == 'Up')       { move('prev'); e.preventDefault() }
+      else if (key == 'Down')     { move('next'); e.preventDefault() }
+      else if (key == 'Return')   { visitFocusedEntry() }
+      else if (key == 'C-Return') { visitFocusedEntry(true) }
+
+    }).keyup(function(e) {
       var key = keyString(e);
       if (
         key == 'Up'    ||
@@ -113,13 +110,6 @@ var Hakolog = {
       allEntries ?
         $(this).trigger('update') :
         $(this).submit();
-
-    }).keydown(function(e) {
-      var key = keyString(e);
-      if      (key == 'Up')       { move('prev'); e.preventDefault() }
-      else if (key == 'Down')     { move('next'); e.preventDefault() }
-      else if (key == 'Return')   { visitFocusedEntry() }
-      else if (key == 'C-Return') { visitFocusedEntry(true) }
 
     }).on('ajax:success', function(event, data) {
       /* disable submit when once you submit */
@@ -147,6 +137,35 @@ var Hakolog = {
       $('pre').addClass('prettyprint');
       prettyPrint();
     });
+  },
+
+  /* private */
+
+  visitUrl: function(url, inBackground) {
+    if (inBackground) {
+      var a          = document.createElement('a');
+      var clickEvent = document.createEvent('MouseEvents');
+      clickEvent.initMouseEvent(
+        'click', true, true, window, 0, 0, 0, 0,
+        false, false, false, false, 1, null
+      );
+      a.href = url;
+      a.dispatchEvent(clickEvent);
+    } else {
+      location.href = url;
+    }
+  },
+
+  adjustScroll: function(obj) {
+    var objTop    = obj.offset().top;
+    var objHeight = obj.height();
+    var winTop    = $(window).scrollTop();
+    var winHeight = $(window).height();
+    if (objTop <= winTop) {
+      $('html, body').scrollTop(objTop);
+    } else if (winTop + winHeight <= objTop + objHeight) {
+      $('html, body').scrollTop(objTop + objHeight - winHeight);
+    }
   }
 };
 
