@@ -48,7 +48,7 @@ var Hakolog = {
         form.serialize(),
         function(data) {
           preview.html(data);
-          $(window).trigger('change');
+          $(window).trigger('update');
         }
       );
     };
@@ -143,7 +143,7 @@ var Hakolog = {
   },
 
   bindPrettifyCode: function() {
-    $(window).bind('change', function() {
+    $(window).bind('update', function() {
       $('pre').addClass('prettyprint');
       prettyPrint();
     });
@@ -173,5 +173,5 @@ Hakolog.register('entries_show', function() {
 $(function() {
   Hakolog.dispatch();
   $('a[original-title]').tipsy();
-  $(window).trigger('change');
+  $(window).trigger('update');
 });
