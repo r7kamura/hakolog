@@ -38,7 +38,7 @@ var Hakolog = {
   bindAutoPreview: function() {
     var timeoutID;
     var self          = this;
-    var duraition     = 1 * 1000;
+    var duration      = 1 * 1000;
     var form          = $('#form-preview');
     var preview       = $('#preview');
     var before        = form.serialize();
@@ -58,7 +58,7 @@ var Hakolog = {
       if (before == after) { return }
       before = after;
       clearTimeout(timeoutID);
-      timeoutID = setTimeout(function() { updatePreview() }, duraition);
+      timeoutID = setTimeout(function() { updatePreview() }, duration);
     });
   },
 
