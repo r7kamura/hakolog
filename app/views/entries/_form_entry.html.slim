@@ -8,10 +8,16 @@
     = f.text_area :body, :rows => 7, \
       :placeholder => "#{unicode(:edit)} body".html_safe
 
-  = button_tag :class => "btn btn-info", :type => "submit" do
-    i.icon-ok
+  .buttons
+    - if entry.persisted?
+      = button_tag :id => "button-fullscreen", :class => "btn btn-inverse", \
+        :type => "button" do
+        i.icon-zoom-in
 
-  - if entry.persisted?
-    = link_to [current_blog, entry], :data => { :method => :delete }, \
-      :confirm => "OK?", :class => "btn btn-danger" do
-      i.icon-trash
+    = button_tag :class => "btn btn-info", :type => "submit" do
+      i.icon-ok
+
+    - if entry.persisted?
+      = link_to [current_blog, entry], :data => { :method => :delete }, \
+        :confirm => "OK?", :class => "btn btn-danger" do
+        i.icon-trash

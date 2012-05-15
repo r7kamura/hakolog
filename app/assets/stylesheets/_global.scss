@@ -110,3 +110,50 @@ body {
     padding: 4px 12px;
   }
 }
+
+.fullscreen-editor {
+  max-width: 100%;
+  padding: 0;
+
+  & > header {
+    display: none;
+  }
+
+  article {
+    float: left;
+    overflow: auto;
+    width: 50%;
+    border: 0;
+    margin: 0;
+    @include box_sizing;
+    @include border_radius(0);
+  }
+
+  form {
+    float: left;
+    width: 50%;
+    margin: 0 !important;
+
+    input {
+      display: none;
+    }
+
+    textarea {
+      border: none;
+      padding: 20px;
+      color: white;
+      background: black;
+      resize: none;
+      @include box_sizing;
+      @include border_radius(0);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .btn {
+    display: none;
+  }
+}

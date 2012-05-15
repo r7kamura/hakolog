@@ -32,7 +32,7 @@ var Hakolog = {
   })(),
 
   focusFirstInput: function() {
-    $('form input[type=text]').focus();
+    $('form :input').focus();
   },
 
   bindAutoPreview: function() {
@@ -138,6 +138,25 @@ var Hakolog = {
     });
   },
 
+  bindFullscreenEditor: function() {
+    var self  = this;
+    var klass = 'fullscreen-editor';
+    $('#button-fullscreen').click(function() {
+      $(window).trigger('fullscreen');
+    });
+    $(window).bind('fullscreen', function() {
+      $('body').addClass(klass);
+      $(window).resize();
+      self.focusFirstInput();
+    }).resize(function() {
+      if ($('body').hasClass(klass))
+        $('article, textarea').height($(window).height());
+    }).keyup(function(e) {
+      if (keyString(e) == 'Esc' && $('body').hasClass(klass))
+        $('body').removeClass(klass);
+    });
+  },
+
   /* private */
 
   visitUrl: function(url, inBackground) {
@@ -186,6 +205,7 @@ Hakolog.register('entries_new', function() {
 Hakolog.register('entries_show', function() {
   this.bindPrettifyCode();
   this.bindAutoPreview();
+  this.bindFullscreenEditor();
 });
 
 $(function() {
