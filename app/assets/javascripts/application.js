@@ -48,7 +48,7 @@ var Hakolog = {
         form.serialize(),
         function(data) {
           preview.html(data);
-          $(window).trigger('update');
+          $(window).trigger('update').resize();
         }
       );
     };
