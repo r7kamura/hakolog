@@ -22,7 +22,12 @@ class Entry < ActiveRecord::Base
     where("path like ? or body like ?", "%#{query}%", "%#{query}%")
   }
 
-  validates :path, :presence => true, :uniqueness => { :scope => :blog_id }
+  validates :path,
+    :presence   => true,
+    :uniqueness => { :scope => :blog_id },
+    :format     => {
+      :with => /#{Regexp.escape(BASE_PATH)}.+#{Regexp.escape(DEFAULT_EXT)}/
+    }
 
   before_save :downcase_path
   before_save :add_modified_at
