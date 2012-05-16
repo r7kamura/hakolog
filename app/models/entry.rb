@@ -97,6 +97,11 @@ class Entry < ActiveRecord::Base
     )
   end
 
+  # for preview
+  def modified_at
+    super || Time.now
+  end
+
   def title
     path && path.gsub(/^#{BASE_PATH}/, "").gsub(/#{DEFAULT_EXT}$/, "")
   end
